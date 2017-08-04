@@ -1,3 +1,5 @@
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { VideoListComponent } from './../components/video-list/video-list';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { VideoDetailComponent } from './../components/video-detail/video-detail';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -22,7 +24,8 @@ import { VideosProvider } from '../providers/videos/videos';
     ContactPage,
     HomePage,
     TabsPage,
-    VideoDetailComponent
+    VideoDetailComponent,
+    VideoListComponent
   ],
   imports: [
     BrowserModule,
@@ -36,14 +39,16 @@ import { VideosProvider } from '../providers/videos/videos';
     ContactPage,
     HomePage,
     TabsPage,
-    VideoDetailComponent
+    VideoDetailComponent,
+    VideoListComponent
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     VideosProvider,
-    YoutubeVideoPlayer
+    YoutubeVideoPlayer,
+    SocialSharing
   ]
 })
 export class AppModule {}

@@ -1,3 +1,4 @@
+
 <ion-header>
   <ion-navbar color="primary" >
     
@@ -17,14 +18,27 @@
 </ion-header>
 
 <ion-content dir="rtl" padding class="card-background-page">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+      
+    </ion-refresher-content>
+  </ion-refresher>
+
   <ion-card *ngFor="let video of videos" (click)="openVideo(video)">
-    <img class="card-img" [src]="video.snippet.thumbnails.medium.url" height="parent"/>
+    <img class="card-img" [src]="video.image" height="parent"/>
     <span class="card-info">
-      <div class="card-subtitle">{{ video.statistics.viewCount }} مشاهدة</div>
-      <div class="card-title">{{video.snippet.title}}</div>
+      <div class="card-subtitle">{{ video.viewCount }} مشاهدة</div>
+      <div class="card-title">{{video.title}}</div>
     </span>
     <span class="card-time">
-      <div class="video-time">{{ videosProvider.parseDuration(video.contentDetails.duration) }}</div>
+      <div class="video-time">{{ video.duration }}</div>
     </span>
   </ion-card>
+
+  <ion-infinite-scroll *ngIf="videos.length < 50" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <button class="more-btn"  *ngIf="videos.length >= 50" ion-button center (click)="openMore()" >المزيد</button>
+
 </ion-content>

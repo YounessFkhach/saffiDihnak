@@ -10,23 +10,19 @@
 
 <ion-content dir="rtl">
 
-  <ion-fab right bottom>
+  <ion-fab right bottom (click)="shareVideo()">
     <button ion-fab color="secondary"><ion-icon name="share"></ion-icon></button>
-    <ion-fab-list side="top">
-      <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
-      <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
-    </ion-fab-list>
   </ion-fab>
 
   <div class="video-profile" text-center 
         #profilePic 
-        [style.background-image]="'url(' + video.snippet.thumbnails.medium.url + ')'"
+        [style.background-image]="'url(' + video.image + ')'"
         (click)="playVideo()">
       <img src="assets/icon/youtube-play.png" alt="مشاهدة" class="play-ico">
   </div>
 
   <div class="video-detail" padding>
-    <h2>{{video.snippet.title}}</h2>
-    <p>{{video.snippet.description}}</p>
+    <h2>{{video.title}}</h2>
+    <p>{{video.description}}</p>
   </div>
 </ion-content>

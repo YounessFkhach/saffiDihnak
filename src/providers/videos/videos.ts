@@ -10,22 +10,60 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class VideosProvider {
+  uploadsId : string = "UUxKWhe_05cuDe3ATBK_UnVA"
+
+
+
   url1: string = "https://www.googleapis.com/youtube/v3/videos?id=";
   url2: string = "&part=contentDetails,snippet,statistics&key=AIzaSyD4cXEM1w9udInuog2sSg67Q1hLHhWXQUE"
-  idUrl: string = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyD4cXEM1w9udInuog2sSg67Q1hLHhWXQUE&channelId=UCxKWhe_05cuDe3ATBK_UnVA&part=id&order=date&maxResults=50";
+  idUrl1: string = "https://www.googleapis.com/youtube/v3/playlistItems?playlistId="
+  idUrl2: string = "&part=contentDetails&key=AIzaSyD4cXEM1w9udInuog2sSg67Q1hLHhWXQUE&maxResults="
 
   constructor(public http: Http) {
     console.log('Hello VideosProvider Provider');
   }
 
-  getAllIds(){
-    return this.http.get(this.idUrl);
+  getAllIds(count: number){
+    console.log(this.idUrl1 + this.uploadsId + this.idUrl2 + count)
+    return this.http.get(this.idUrl1 + this.uploadsId + this.idUrl2 + count);
+  }
+
+  getNextIds(count : number, pageToken : string){
+    console.log(this.idUrl1 + this.uploadsId + this.idUrl2 + count + "&pageToken=" + pageToken)
+    return this.http.get(this.idUrl1 + this.uploadsId + this.idUrl2 + count + "&pageToken=" + pageToken);
   }
 
   getInfo(idArray : string[]){
 
     return this.http.get(this.url1 + idArray.join(",") + this.url2)
   }
+
+
+}
+
+
+
+
+
+export class VideoDetail {
+  id : string
+  title : string
+  description : string
+  viewCount : number
+  duration : string
+  url : string
+  image : any
+
+  constructor(data : any){
+    this.id           = data.id
+    this.title        = data.snippet.title
+    this.description  = data.snippet.description
+    this.viewCount    = data.statistics.viewCount
+    this.duration     = this.parseDuration(data.contentDetails.duration)
+    this.url          = "https://www.youtube.com/watch?v=" + data.id
+    this.image        = data.snippet.thumbnails.medium.url
+  }
+
 
   parseDuration(PT) {
     var output = [];
