@@ -1,3 +1,4 @@
+import { VideoSearchComponent } from './../../components/video-search/video-search';
 import { VideoListComponent } from './../../components/video-list/video-list';
 import { VideoDetailComponent } from './../../components/video-detail/video-detail';
 import { VideosProvider, VideoDetail } from './../../providers/videos/videos';
@@ -13,7 +14,6 @@ export class HomePage {
   videosIds : any[] = [];
   videos : VideoDetail[] = [];
   nextPageToken : string;
-  isFirst = true
 
   constructor(public navCtrl: NavController, private videosProvider : VideosProvider) {
     this.videosProvider.getAllIds(10).subscribe(res => {
@@ -35,9 +35,7 @@ export class HomePage {
   }
 
   openSearchModal(){
-    //To Do
-    this.videos.shift();
-    console.log("search modal")
+    this.navCtrl.push(VideoSearchComponent);
   }
 
   doRefresh(refresher : any){

@@ -20,10 +20,10 @@ export class MyApp {
 
 
   constructor(private platform: Platform,private statusBar: StatusBar,private splashScreen: SplashScreen) {
-    this.statusBar.backgroundColorByHexString('#4e3376');
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      this.statusBar.backgroundColorByHexString('#4e3376');
       statusBar.styleDefault();
       splashScreen.hide();
       if (this.splashScreen) {
@@ -37,16 +37,6 @@ export class MyApp {
     });
   }
 
-  // ionViewDidLoad() {
-  //   this.platform.ready().then(() => {
-  //     // Okay, so the platform is ready and our plugins are available.
-  //     // Here you can do any higher level native things you might need.
-  //     this.statusBar.styleDefault();
-  //     // this.statusBar.backgroundColorByHexString('#D32F2F');
-  //     this.statusBar.backgroundColorByHexString('#4e3376');
-  //     this.splashScreen.hide();
-  //   });
-  // }
 
   openPage(p){
     //To Do

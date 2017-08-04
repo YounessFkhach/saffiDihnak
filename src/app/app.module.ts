@@ -1,3 +1,4 @@
+import { VideoSearchComponent } from './../components/video-search/video-search';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { VideoListComponent } from './../components/video-list/video-list';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
@@ -25,7 +26,8 @@ import { VideosProvider } from '../providers/videos/videos';
     HomePage,
     TabsPage,
     VideoDetailComponent,
-    VideoListComponent
+    VideoListComponent,
+    VideoSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { VideosProvider } from '../providers/videos/videos';
     HomePage,
     TabsPage,
     VideoDetailComponent,
-    VideoListComponent
+    VideoListComponent,
+    VideoSearchComponent
   ],
   providers: [
     StatusBar,

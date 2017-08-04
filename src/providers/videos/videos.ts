@@ -20,22 +20,24 @@ export class VideosProvider {
   idUrl2: string = "&part=contentDetails&key=AIzaSyD4cXEM1w9udInuog2sSg67Q1hLHhWXQUE&maxResults="
 
   constructor(public http: Http) {
-    console.log('Hello VideosProvider Provider');
+
   }
 
   getAllIds(count: number){
-    console.log(this.idUrl1 + this.uploadsId + this.idUrl2 + count)
     return this.http.get(this.idUrl1 + this.uploadsId + this.idUrl2 + count);
   }
 
   getNextIds(count : number, pageToken : string){
-    console.log(this.idUrl1 + this.uploadsId + this.idUrl2 + count + "&pageToken=" + pageToken)
     return this.http.get(this.idUrl1 + this.uploadsId + this.idUrl2 + count + "&pageToken=" + pageToken);
   }
 
   getInfo(idArray : string[]){
-
+    console.log(this.url1 + idArray.join(",") + this.url2)
     return this.http.get(this.url1 + idArray.join(",") + this.url2)
+  }
+
+  getByKey(keyWord : string){
+    return this.http.get("https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCxKWhe_05cuDe3ATBK_UnVA&maxResults=20&key=AIzaSyD4cXEM1w9udInuog2sSg67Q1hLHhWXQUE"+ "&q=" + keyWord);
   }
 
 

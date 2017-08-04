@@ -1,0 +1,22 @@
+
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>صفي ذهنك</ion-title>
+  </ion-navbar>
+  <ion-searchbar (ionInput)="getItems($event)" color="primary" placeholder="بحث"></ion-searchbar>
+</ion-header>
+
+<ion-content dir="rtl" padding class="card-background-page">
+
+  <ion-card *ngFor="let video of videos" (click)="openVideo(video)">
+    <img class="card-img" [src]="video.image" height="parent"/>
+    <span class="card-info">
+      <div class="card-subtitle">{{ video.viewCount }} مشاهدة</div>
+      <div class="card-title">{{video.title}}</div>
+    </span>
+    <span class="card-time">
+      <div class="video-time">{{ video.duration }}</div>
+    </span>
+  </ion-card>
+
+</ion-content>
