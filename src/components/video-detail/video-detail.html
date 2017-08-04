@@ -1,0 +1,32 @@
+<!-- Generated template for the VideoDetailComponent component -->
+<ion-header dir="rtl">
+
+  <ion-navbar>
+    <ion-title>صفي ذهنك</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content dir="rtl">
+
+  <ion-fab right bottom>
+    <button ion-fab color="secondary"><ion-icon name="share"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <div class="video-profile" text-center 
+        #profilePic 
+        [style.background-image]="'url(' + video.snippet.thumbnails.medium.url + ')'"
+        (click)="playVideo()">
+      <img src="assets/icon/youtube-play.png" alt="مشاهدة" class="play-ico">
+  </div>
+
+  <div class="video-detail" padding>
+    <h2>{{video.snippet.title}}</h2>
+    <p>{{video.snippet.description}}</p>
+  </div>
+</ion-content>

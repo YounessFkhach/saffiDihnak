@@ -1,17 +1,30 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
+  <ion-navbar color="primary" >
+    
+    <ion-title>صفي ذهنك</ion-title>
+
+    <button ion-button icon-only menuToggle>
+          <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openSearchModal()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content dir="rtl" padding class="card-background-page">
+  <ion-card *ngFor="let video of videos" (click)="openVideo(video)">
+    <img class="card-img" [src]="video.snippet.thumbnails.medium.url" height="parent"/>
+    <span class="card-info">
+      <div class="card-subtitle">{{ video.statistics.viewCount }} مشاهدة</div>
+      <div class="card-title">{{video.snippet.title}}</div>
+    </span>
+    <span class="card-time">
+      <div class="video-time">{{ videosProvider.parseDuration(video.contentDetails.duration) }}</div>
+    </span>
+  </ion-card>
 </ion-content>

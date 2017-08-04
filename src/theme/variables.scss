@@ -42,6 +42,25 @@ $colors: (
 );
 
 
+$colors: (
+  primary:    #F44336,
+  primary-dark: #D32F2F,
+  secondary:  #448AFF,
+  danger:     #757575,
+  light:      #f4f4f4,
+  dark:       #222
+);
+
+$colors: (
+  primary:    #8b47d1,
+  primary-dark: #4e3376,
+  secondary:  #fe4c68,
+  danger:     #D32F2F,
+  light:      #f4f4f4,
+  dark:       #222
+);
+
+
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
@@ -86,3 +105,12 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+
+$font-family-ios-base: "Cairo", -apple-system, "Helvetica Neue", "Roboto", sans-serif;
+$font-family-md-base: "Cairo", "Roboto", "Helvetica Neue", sans-serif;
+$font-family-wp-base: "Cairo", "Segoe UI", "Noto Sans", sans-serif;
+
+ion-content > div {
+  padding: 0 !important;
+}

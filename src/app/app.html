@@ -1,1 +1,18 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu side="right" [content]="content" dir="rtl">
+    <ion-header dir="rtl">
+      <ion-navbar color="secondary">
+        <ion-title>القائمة</ion-title>
+      </ion-navbar>
+    </ion-header>
+
+    <ion-content dir="rtl">
+      <ion-list>
+        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+          {{p.title}}
+        </button>
+      </ion-list>
+    </ion-content>
+
+</ion-menu>
+
+<ion-nav #content dir="rtl" [root]="rootPage"></ion-nav>

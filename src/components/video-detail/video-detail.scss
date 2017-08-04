@@ -1,0 +1,26 @@
+video-detail {
+    ion-navbar {
+        background: none;
+    }
+    .video-profile {
+        width: 100%;
+        background-position: center center;
+        background-size: cover;
+        height: 250px;
+        display: flex;
+    }
+
+    .video-detail {
+        width: 100%;
+        background: white;
+        margin-bottom: 40px;
+    }
+
+    
+
+    .play-ico {
+        margin: auto;
+        display: block;
+        height: 20%;
+    }
+}

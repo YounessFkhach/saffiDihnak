@@ -14,3 +14,22 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+@font-face {
+    font-family: 'Cairo';
+    src: url('../assets/fonts/Cairo-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+html[dir="rtl"] {
+    .back-button-icon.icon-md.back-button-icon-md.ion-md-arrow-back {
+        transform: rotate(180deg);
+    }
+
+    .back-button-icon.icon-ios.back-button-icon-ios.ion-ios-arrow-back {
+        transform: rotate(180deg);
+        padding: 0 5px;
+    }
+}
