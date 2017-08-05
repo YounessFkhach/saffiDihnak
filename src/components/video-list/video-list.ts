@@ -27,7 +27,6 @@ videosIds : any[] = [];
   getNext(){
     this.videosProvider.getNextIds(15, this.nextPageToken).subscribe(res => {
       this.nextPageToken = res.json().nextPageToken
-      console.log(this.nextPageToken)
       this.videosIds = res.json().items.map(item => item.contentDetails.videoId);
       this.videosProvider.getInfo(this.videosIds).subscribe(res => {
         this.videos = res.json().items.map(item => new VideoDetail(item));

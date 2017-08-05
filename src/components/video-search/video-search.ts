@@ -19,7 +19,7 @@ export class VideoSearchComponent {
   videos : VideoDetail[] = [];
 
   constructor(public navCtrl: NavController, private videosProvider : VideosProvider) {
-    console.log('Hello VideoSearchComponent Component');
+    
   }
 
   getItems(event : any){

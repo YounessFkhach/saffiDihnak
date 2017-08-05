@@ -14,11 +14,12 @@ export class HomePage {
   videosIds : any[] = [];
   videos : VideoDetail[] = [];
   nextPageToken : string;
+  isLoading : boolean = false;
 
   constructor(public navCtrl: NavController, private videosProvider : VideosProvider) {
     this.videosProvider.getAllIds(10).subscribe(res => {
       this.nextPageToken = res.json().nextPageToken
-      console.log(this.nextPageToken)
+      
       this.videosIds = res.json().items.map(item => item.contentDetails.videoId);
       this.videosProvider.getInfo(this.videosIds).subscribe(res => {
         this.videos = res.json().items.map(item => new VideoDetail(item));
@@ -39,6 +40,7 @@ export class HomePage {
   }
 
   doRefresh(refresher : any){
+    
     this.videosProvider.getAllIds(10).subscribe(res => {
       // list of ids to get data of
       var newIds : string[] = []
@@ -63,7 +65,6 @@ export class HomePage {
       //complete the refresh
       refresher.complete();
     })
-
     
     // set timeout to stop refreshing if the network is down
     setTimeout(() => {
@@ -81,28 +82,33 @@ export class HomePage {
 
 
   doInfinite(infiniteScroll) {
-    this.videosProvider.getNextIds(10, this.nextPageToken).subscribe(res => {   
-      // get the next Ids
-      var nextIds : string[] = []
-      nextIds = res.json().items
-        .map(item => item.contentDetails.videoId)
-        .filter(id => !this.idExists(id))
-    
-      // Update the next token
-      this.nextPageToken = res.json().nextPageToken
+    if(!this.isLoading){
+      this.isLoading = true;
+      this.videosProvider.getNextIds(10, this.nextPageToken).subscribe(res => {   
+        // get the next Ids
+        var nextIds : string[] = []
+        nextIds = res.json().items
+          .map(item => item.contentDetails.videoId)
+          .filter(id => !this.idExists(id))
+      
+        // Update the next token
+        this.nextPageToken = res.json().nextPageToken
 
-      // add the videos to view
-      this.videosProvider.getInfo(nextIds).subscribe(res => {
-        var nextVideos : any[] = []
-        nextVideos = res.json().items
-        nextVideos.map(item => {
-          this.videos.push(new VideoDetail(item))
-        });
+        // add the videos to view
+        this.videosProvider.getInfo(nextIds).subscribe(res => {
+          var nextVideos : any[] = []
+          nextVideos = res.json().items
+          nextVideos.map(item => {
+            this.videos.push(new VideoDetail(item))
+          });
 
-        infiniteScroll.complete()
+          infiniteScroll.complete()
+          this.isLoading = false;
+        })
+
       })
-
-    })
+    
+    }
 
     setTimeout(() => {
       infiniteScroll.complete();

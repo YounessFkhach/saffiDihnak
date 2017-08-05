@@ -1,8 +1,8 @@
+import { VideoDetailComponent } from './../components/video-detail/video-detail';
 import { VideoSearchComponent } from './../components/video-search/video-search';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { VideoListComponent } from './../components/video-list/video-list';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
-import { VideoDetailComponent } from './../components/video-detail/video-detail';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -42,8 +42,8 @@ import { VideosProvider } from '../providers/videos/videos';
     HomePage,
     TabsPage,
     VideoDetailComponent,
-    VideoListComponent,
-    VideoSearchComponent
+      VideoListComponent,
+      VideoSearchComponent
   ],
   providers: [
     StatusBar,
@@ -52,6 +52,11 @@ import { VideosProvider } from '../providers/videos/videos';
     VideosProvider,
     YoutubeVideoPlayer,
     SocialSharing
+  ],
+  exports: [
+    VideoDetailComponent,
+      VideoListComponent,
+      VideoSearchComponent
   ]
 })
 export class AppModule {}

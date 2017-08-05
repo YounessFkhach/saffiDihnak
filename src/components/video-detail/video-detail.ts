@@ -10,10 +10,15 @@ import { SocialSharing } from '@ionic-native/social-sharing';
  * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
  * for more info on Angular Components.
  */
+
+
+
+
 @Component({
   selector: 'video-detail',
   templateUrl: 'video-detail.html'
 })
+
 export class VideoDetailComponent {
 
   video : any;

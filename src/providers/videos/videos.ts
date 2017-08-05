@@ -32,7 +32,6 @@ export class VideosProvider {
   }
 
   getInfo(idArray : string[]){
-    console.log(this.url1 + idArray.join(",") + this.url2)
     return this.http.get(this.url1 + idArray.join(",") + this.url2)
   }
 
