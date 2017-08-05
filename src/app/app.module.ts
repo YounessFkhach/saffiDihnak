@@ -18,6 +18,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { VideosProvider } from '../providers/videos/videos';
 
+// comment
+
 @NgModule({
   declarations: [
     MyApp,
