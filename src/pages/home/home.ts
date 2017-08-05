@@ -1,10 +1,9 @@
-import { VideoSearchComponent } from './../../components/video-search/video-search';
-import { VideoListComponent } from './../../components/video-list/video-list';
-import { VideoDetailComponent } from './../../components/video-detail/video-detail';
+import { IonicPage } from 'ionic-angular';
 import { VideosProvider, VideoDetail } from './../../providers/videos/videos';
 import { Component, ViewChild } from '@angular/core';
 import { NavController, Content } from 'ionic-angular';
 
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -30,13 +29,13 @@ export class HomePage {
   }
 
   openVideo(video) {
-    this.navCtrl.push(VideoDetailComponent, {
+    this.navCtrl.push("VideoDetailPage", {
       video: video
     });
   }
 
   openSearchModal(){
-    this.navCtrl.push(VideoSearchComponent);
+    this.navCtrl.push("VideoSearchPage");
   }
 
   doRefresh(refresher : any){
@@ -75,7 +74,7 @@ export class HomePage {
 
   openMore(){
     this.content.scrollToTop(10)
-    this.navCtrl.push(VideoListComponent, {
+    this.navCtrl.push("VideoListPage", {
       pageToken : this.nextPageToken
     });
   }

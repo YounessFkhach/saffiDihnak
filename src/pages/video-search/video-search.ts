@@ -1,24 +1,31 @@
-import { NavController } from 'ionic-angular';
 import { VideoDetail, VideosProvider } from './../../providers/videos/videos';
 import { Component } from '@angular/core';
-
+import { IonicPage, NavController } from 'ionic-angular';
 
 /**
- * Generated class for the VideoSearchComponent component.
+ * Generated class for the VideoSearchPage page.
  *
- * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
- * for more info on Angular Components.
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
  */
+
+@IonicPage()
 @Component({
-  selector: 'video-search',
-  templateUrl: 'video-search.html'
+  selector: 'page-video-search',
+  templateUrl: 'video-search.html',
 })
-export class VideoSearchComponent {
+export class VideoSearchPage {
 
   videosIds : any[] = [];
   videos : VideoDetail[] = [];
 
-  constructor(public navCtrl: NavController, private videosProvider : VideosProvider) {
+  constructor(  public navCtrl: NavController,
+                private videosProvider : VideosProvider) {
+    
+    // ToDo
+  }
+
+  ionViewDidLoad() {
     
   }
 
@@ -38,5 +45,13 @@ export class VideoSearchComponent {
     })
 
   }
+
+  openVideo(video) {
+    this.navCtrl.push("VideoDetailPage", {
+      video: video
+    });
+  }
+
+  
 
 }

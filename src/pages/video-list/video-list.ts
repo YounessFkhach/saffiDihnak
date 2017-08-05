@@ -1,27 +1,38 @@
+//import { VideoDetailPage } from './../video-detail/video-detail';
+import { VideoDetail, VideosProvider } from './../../providers/videos/videos';
 import { Component } from '@angular/core';
-import { VideoDetailComponent } from './../../components/video-detail/video-detail';
-import { VideosProvider, VideoDetail } from './../../providers/videos/videos';
-import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
 /**
- * Generated class for the VideoListComponent component.
+ * Generated class for the VideoListPage page.
  *
- * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
- * for more info on Angular Components.
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
  */
+
+@IonicPage()
 @Component({
-  selector: 'video-list',
-  templateUrl: 'video-list.html'
+  selector: 'page-video-list',
+  templateUrl: 'video-list.html',
 })
-export class VideoListComponent {
-videosIds : any[] = [];
+export class VideoListPage {
+
+
+  ionViewDidLoad() {
+    
+  }
+
+  videosIds : any[] = [];
   videos : VideoDetail[] = [];
   nextPageToken : string;
   isFirst = true
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private videosProvider : VideosProvider) {
+  constructor(  public navCtrl: NavController, 
+                public navParams: NavParams, 
+                private videosProvider : VideosProvider) {
+
     this.nextPageToken = navParams.get("pageToken")
     this.getNext();
-
   }
 
   getNext(){
@@ -35,7 +46,7 @@ videosIds : any[] = [];
   }
 
   openVideo(video) {
-    this.navCtrl.push(VideoDetailComponent, {
+    this.navCtrl.push("VideoDetailPage", {
       video: video
     });
   }
@@ -51,6 +62,7 @@ videosIds : any[] = [];
     var existArr = this.videos.filter(video => video.id == id)
     return existArr.length > 0
   }
+
 
 
 }
