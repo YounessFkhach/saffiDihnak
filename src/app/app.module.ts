@@ -1,3 +1,4 @@
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 // import { VideoDetailModule } from './../components/video-detail/video-detail.module';
 // import { VideoDetailComponent } from './../components/video-detail/video-detail';
 // import { VideoSearchComponent } from './../components/video-search/video-search';
@@ -51,7 +52,8 @@ import { VideoDbProvider } from '../providers/video-db/video-db';
     File,
     FileTransfer,
     SQLite,
-    VideoDbProvider
+    VideoDbProvider,
+    InAppBrowser
   ],
   exports: [
   ]

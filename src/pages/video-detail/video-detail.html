@@ -23,6 +23,6 @@
 
   <div class="video-detail" padding>
     <h2>{{video.title}}</h2>
-    <p>{{video.description}}</p>
+    <p [innerHTML]="convert(video.description)" ></p>
   </div>
 </ion-content>

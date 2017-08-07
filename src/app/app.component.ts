@@ -2,6 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+
+
 
 //import { TabsPage } from '../pages/tabs/tabs';
 
@@ -15,13 +18,13 @@ export class MyApp {
 
   pages: any[] = [
     { title: 'الرئيسية', component: "tabs" },
-    { title: 'قناة اليوتوب', component: "AboutPage" },
-    { title: 'صفحة الفايسبوك', component: null },
-    { title: 'حساب تويتر', component: null },
+    { title: 'قناة اليوتوب', component: ["https://www.youtube.com/user/tuuuubeable"] },
+    { title: 'صفحة الفايسبوك', component: ["https://www.facebook.com/saffidihnek/"] },
+    { title: 'حساب تويتر', component: ["https://twitter.com/saffidihnak"] },
   ]
 
 
-  constructor(private platform: Platform,private statusBar: StatusBar,private splashScreen: SplashScreen) {
+  constructor(private platform: Platform,private statusBar: StatusBar,private splashScreen: SplashScreen, private iab: InAppBrowser) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -41,9 +44,15 @@ export class MyApp {
 
 
   openPage(p){
-    //To Do
-    this.nav.setRoot(p)
-    console.log("open page: " + p.title)
+    //check if p is page or link
+    if(p.component instanceof Array){
+      let browser = this.iab.create(p.component[0], '_system');
+      console.log("open link: " + p.title)
+    }else{
+      this.nav.setRoot(p.Component)
+      console.log("open page: " + p.title)
+    }
+    
   }
 
 }
