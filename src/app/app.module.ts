@@ -19,6 +19,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { VideosProvider } from '../providers/videos/videos';
 
+import { FileTransfer } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
+import { SQLite } from '@ionic-native/sqlite'
+import { VideoDbProvider } from '../providers/video-db/video-db';
+
 
 
 // comment ss
@@ -42,7 +47,11 @@ import { VideosProvider } from '../providers/videos/videos';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     VideosProvider,
     YoutubeVideoPlayer,
-    SocialSharing
+    SocialSharing,
+    File,
+    FileTransfer,
+    SQLite,
+    VideoDbProvider
   ],
   exports: [
   ]

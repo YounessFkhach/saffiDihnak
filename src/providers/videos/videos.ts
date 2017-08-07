@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+// import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+// import { File } from '@ionic-native/file';
 
 /*
   Generated class for the VideosProvider provider.
@@ -38,7 +40,7 @@ export class VideosProvider {
   getByKey(keyWord : string){
     return this.http.get("https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCxKWhe_05cuDe3ATBK_UnVA&maxResults=20&key=AIzaSyD4cXEM1w9udInuog2sSg67Q1hLHhWXQUE"+ "&q=" + keyWord);
   }
-
+  
 
 }
 
@@ -53,17 +55,31 @@ export class VideoDetail {
   viewCount : number
   duration : string
   url : string
-  image : any
+  image : string
 
   constructor(data : any){
-    this.id           = data.id
-    this.title        = data.snippet.title
-    this.description  = data.snippet.description
-    this.viewCount    = data.statistics.viewCount
-    this.duration     = this.parseDuration(data.contentDetails.duration)
-    this.url          = "https://www.youtube.com/watch?v=" + data.id
-    this.image        = data.snippet.thumbnails.medium.url
+    if(data.snippet){
+      //in case data is youtube api element
+      this.id           = data.id
+      this.title        = data.snippet.title
+      this.description  = data.snippet.description
+      this.viewCount    = data.statistics.viewCount
+      this.duration     = this.parseDuration(data.contentDetails.duration)
+      this.url          = "https://www.youtube.com/watch?v=" + data.id
+      this.image        = data.snippet.thumbnails.medium.url
+      
+    }else{
+      // in case data is from DB
+      this.id           = data.id
+      this.title        = data.title
+      this.description  = data.description
+      this.viewCount    = data.viewCount
+      this.duration     = data.duration
+      this.url          = "https://www.youtube.com/watch?v=" + data.id
+      this.image        = data.image
+    }
   }
+
 
 
   parseDuration(PT) {

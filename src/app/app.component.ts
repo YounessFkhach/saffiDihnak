@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -11,9 +11,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 export class MyApp {
   rootPage:any = "TabsPage";
 
+  @ViewChild(Nav) nav: Nav;
+
   pages: any[] = [
-    { title: 'الرئيسية', component: null },
-    { title: 'قناة اليوتوب', component: null },
+    { title: 'الرئيسية', component: "tabs" },
+    { title: 'قناة اليوتوب', component: "AboutPage" },
     { title: 'صفحة الفايسبوك', component: null },
     { title: 'حساب تويتر', component: null },
   ]
@@ -40,6 +42,7 @@ export class MyApp {
 
   openPage(p){
     //To Do
+    this.nav.setRoot(p)
     console.log("open page: " + p.title)
   }
 

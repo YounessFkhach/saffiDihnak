@@ -1,6 +1,6 @@
 import { VideoDetail, VideosProvider } from './../../providers/videos/videos';
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, ViewController } from 'ionic-angular';
 
 /**
  * Generated class for the VideoSearchPage page.
@@ -20,9 +20,11 @@ export class VideoSearchPage {
   videos : VideoDetail[] = [];
 
   constructor(  public navCtrl: NavController,
-                private videosProvider : VideosProvider) {
+                private videosProvider : VideosProvider,
+                private viewCtrl : ViewController) {
     
-    // ToDo
+    this.navCtrl.canSwipeBack();
+    this.viewCtrl.showBackButton(false);
   }
 
   ionViewDidLoad() {
