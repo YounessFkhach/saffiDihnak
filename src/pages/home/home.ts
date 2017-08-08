@@ -2,7 +2,7 @@ import { VideoDbProvider } from './../../providers/video-db/video-db';
 import { IonicPage, NavParams } from 'ionic-angular';
 import { VideosProvider, VideoDetail } from './../../providers/videos/videos';
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Content } from 'ionic-angular';
+import { NavController, Content, ToastController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -20,9 +20,18 @@ export class HomePage {
   isLoading : boolean = false;
   storedVideos : string[] = [];
   playListId : string
+
+  showError : boolean = false
   
-  constructor(public navCtrl: NavController, private videosProvider : VideosProvider, private videoDb : VideoDbProvider, navParams : NavParams) {
-    console.table(navParams.data)
+  constructor(public navCtrl: NavController,
+              private videosProvider : VideosProvider,
+              private videoDb : VideoDbProvider, 
+              navParams : NavParams,
+              private toastCtrl : ToastController) {
+
+    setTimeout(() => {
+      this.showError = true;
+    }, 3000);
     this.type = navParams.get("table") || "video"
     this.playListId = navParams.get("id") || "UUxKWhe_05cuDe3ATBK_UnVA"
     this.title =  navParams.get("title") || "صفي ذهنك"
@@ -63,7 +72,7 @@ export class HomePage {
             this.updateVideos()
           }, 3000);
 
-        })
+        }, error => this.presentToast("خطأ في الاتصال بالانترنت"))
 
         //schedule database cleanup 
         var dataBaseLength = 15
@@ -147,7 +156,7 @@ export class HomePage {
       //complete the refresh
       if(refresher)
         refresher.complete();
-    })
+    }, error => this.presentToast("خطأ في الاتصال بالانترنت"))
     
     // set timeout to stop refreshing if the network is down
     if(refresher)
@@ -223,6 +232,16 @@ export class HomePage {
   idStored(id : string): boolean{
     var existArr = this.storedVideos.filter(item => item == id)
     return existArr.length > 0
+  }
+
+  presentToast(message : string) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'top'
+    });
+
+    toast.present();
   }
 
   ionViewDidLoad() {
