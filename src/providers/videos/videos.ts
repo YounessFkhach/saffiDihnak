@@ -12,8 +12,6 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class VideosProvider {
-  uploadsId : string = "UUxKWhe_05cuDe3ATBK_UnVA"
-
 
 
   url1: string = "https://www.googleapis.com/youtube/v3/videos?id=";
@@ -25,12 +23,12 @@ export class VideosProvider {
 
   }
 
-  getAllIds(count: number){
-    return this.http.get(this.idUrl1 + this.uploadsId + this.idUrl2 + count);
+  getAllIds(playListId : string, count: number){
+    return this.http.get(this.idUrl1 + playListId + this.idUrl2 + count);
   }
 
-  getNextIds(count : number, pageToken : string){
-    return this.http.get(this.idUrl1 + this.uploadsId + this.idUrl2 + count + "&pageToken=" + pageToken);
+  getNextIds(playlistId ,count : number, pageToken : string){
+    return this.http.get(this.idUrl1 + playlistId + this.idUrl2 + count + "&pageToken=" + pageToken);
   }
 
   getInfo(idArray : string[]){

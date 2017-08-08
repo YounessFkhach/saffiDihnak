@@ -11,17 +11,12 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class VideoDbProvider {
   DB_NAME : string = 'videos.db'
-  // db : SQLiteObject;
-  // isOpen : boolean = false
+  isReady : boolean = false
+  db : SQLiteObject
 
   constructor( private sqlite : SQLite) {
     this.sqlite = new SQLite();
-    this.create().then((db : SQLiteObject) => {
-      console.log("database created!")
-      db.executeSql('CREATE TABLE IF NOT EXISTS videos (`_id` INTEGER PRIMARY KEY, `id` VARCHAR(20) UNIQUE, `image` VARCHAR(100), `description` TEXT, `title` VARCHAR(110), `duration` VARCHAR(10), `viewCount` INT);', {})
-        .then(() => console.log('Executed SQL'))
-        .catch(e => console.log("table creation error: " + e));
-      }).catch(e => console.log("database creation error: " + e))
+    //this.init()
   }
 
   create(){
@@ -31,12 +26,39 @@ export class VideoDbProvider {
     })
   }
 
-  getVideos(){
-    console.log("getting videos")
+  init(){
     return new Promise((resolve, reject)=>{
       this.create().then((db : SQLiteObject) => {
-      console.log("database created!!")
-      db.executeSql('select * from `videos` order by `_id` desc', {})
+        this.db = db;
+        db.executeSql('CREATE TABLE IF NOT EXISTS `video` (`_id` INTEGER PRIMARY KEY, `id` VARCHAR(20) UNIQUE, `image` VARCHAR(100), `description` TEXT, `title` VARCHAR(110), `duration` VARCHAR(10), `viewCount` INT);', {})
+          .then(() => {
+            db.executeSql('CREATE TABLE IF NOT EXISTS `tests` (`_id` INTEGER PRIMARY KEY, `id` VARCHAR(20) UNIQUE, `image` VARCHAR(100), `description` TEXT, `title` VARCHAR(110), `duration` VARCHAR(10), `viewCount` INT);', {})
+              .then(() => {
+                db.executeSql('CREATE TABLE IF NOT EXISTS `top` (`_id` INTEGER PRIMARY KEY, `id` VARCHAR(20) UNIQUE, `image` VARCHAR(100), `description` TEXT, `title` VARCHAR(110), `duration` VARCHAR(10), `viewCount` INT);', {})
+                  .then(() => {
+                    db.executeSql('CREATE TABLE IF NOT EXISTS `riddles` (`_id` INTEGER PRIMARY KEY, `id` VARCHAR(20) UNIQUE, `image` VARCHAR(100), `description` TEXT, `title` VARCHAR(110), `duration` VARCHAR(10), `viewCount` INT);', {})
+                      .then(() => {
+                        console.log("All tables were created")
+                        resolve("done");
+                      })
+                      .catch(e => console.log(e))
+                  })
+                  .catch(e => console.log(e))
+              })
+              .catch(e => console.log(e))
+          })
+          .catch(e => {
+            reject(e);
+            console.log("table creation error: " + e)
+          });
+      }).catch(e => console.log("database creation error: " + e))
+    });
+  }
+
+  getVideos(table : string){
+    console.log("getting videos")
+    return new Promise((resolve, reject)=>{
+      this.db.executeSql('select * from `' + table + '` order by _id desc', {})
         .then((data) => {
           //after recieving videos
           var videoArray : VideoDetail[] = []
@@ -47,10 +69,6 @@ export class VideoDbProvider {
               videoArray.push(new VideoDetail(data.rows.item(i)));
             }
           }
-
-          console.table(videoArray)
-            // videoArray = data.rows
-            //                   .map(item => new VideoDetail(item))
           resolve(videoArray);
         })
         .catch(e => {
@@ -58,46 +76,31 @@ export class VideoDbProvider {
           reject(e)
         });
       }).catch(e => console.log(e))
-    });
-    
   }
 
-  insertVideo(video : VideoDetail){
-    
-    this.create().then((db : SQLiteObject) => {
-      db.executeSql('insert into `videos` (id, image, description, title, duration, viewCount) values (?,?,?,?,?,?)', [video.id, video.image, video.description, video.title, video.duration, video.viewCount])
-        .then((data) => {console.log("video is stored")})
-        .catch(e => {
-          console.log("error inserting video")
-          //console.log(e)
-        });
-      }).catch(e => {
+  insertVideo(table : string ,video : VideoDetail){
+    this.db.executeSql('insert into `' + table + '` (id, image, description, title, duration, viewCount) values (?,?,?,?,?,?)', [video.id, video.image, video.description, video.title, video.duration, video.viewCount])
+      .then((data) => {console.log("video is stored")})
+      .catch(e => {
+        console.log("error inserting video")
         //console.log(e)
-      })
+      });
   }
 
-  updateVideo(video : VideoDetail){
-    this.create().then((db : SQLiteObject) => {
-      db.executeSql('UPDATE `videos` set  description = ?, title = ?, viewCount = ? WHERE id = ?', [video.description, video.title, video.viewCount, video.id])
-        .then((data) => {console.log("video Updated")})
-        .catch(e => {
-          console.log("error updating video")
-        });
-      }).catch(e => {
-        console.log(e)
-      })
+  updateVideo(table : string ,video : VideoDetail){
+    this.db.executeSql('UPDATE `' + table + '` set  description = ?, title = ?, viewCount = ? WHERE id = ?', [video.description, video.title, video.viewCount, video.id])
+      .then((data) => {console.log("video Updated")})
+      .catch(e => {
+        console.log("error updating video")
+      });
   }
 
-  deleteVideo(id: String){
-    this.create().then((db : SQLiteObject) => {
-      db.executeSql('DELETE  FROM `videos` WHERE id = ?', [id])
-        .then((data) => {console.log("video deleted")})
-        .catch(e => {
-          console.log("error deletiong")
-        });
-      }).catch(e => {
-        console.log(e)
-      })
+  deleteVideo(table : string ,id: String){
+    this.db.executeSql('DELETE  FROM `' + table + '` WHERE id = ?', [id])
+      .then((data) => {console.log("video deleted")})
+      .catch(e => {
+        console.log("error deletiong")
+    });
   }
 
 

@@ -1,4 +1,4 @@
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, NavParams } from 'ionic-angular';
 import { Component } from '@angular/core';
 
 // import { AboutPage } from '../about/about';
@@ -12,12 +12,12 @@ import { Component } from '@angular/core';
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-
+  params : any
   tab1Root = "HomePage";
   tab2Root = "AboutPage";
   tab3Root = "ContactPage";
 
-  constructor() {
-
+  constructor(navParams: NavParams) {
+    this.params = navParams.data
   }
 }

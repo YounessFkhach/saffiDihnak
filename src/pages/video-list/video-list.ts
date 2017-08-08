@@ -1,4 +1,4 @@
-//import { VideoDetailPage } from './../video-detail/video-detail';
+
 import { VideoDetail, VideosProvider } from './../../providers/videos/videos';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -27,16 +27,21 @@ export class VideoListPage {
   nextPageToken : string;
   isFirst = true
 
+  playListId : string
+  title : string
+
   constructor(  public navCtrl: NavController, 
                 public navParams: NavParams, 
                 private videosProvider : VideosProvider) {
 
     this.nextPageToken = navParams.get("pageToken")
+    this.playListId = navParams.get("playListId")
+    this.title = navParams.get("title")
     this.getNext();
   }
 
   getNext(){
-    this.videosProvider.getNextIds(15, this.nextPageToken).subscribe(res => {
+    this.videosProvider.getNextIds(this.playListId, 15, this.nextPageToken).subscribe(res => {
       this.nextPageToken = res.json().nextPageToken
       this.videosIds = res.json().items.map(item => item.contentDetails.videoId);
       this.videosProvider.getInfo(this.videosIds).subscribe(res => {
