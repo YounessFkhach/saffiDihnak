@@ -14,7 +14,7 @@ import { Component } from '@angular/core';
 export class TabsPage {
   params : any
   tab1Root = "HomePage";
-  tab2Root = "AboutPage";
+  tab2Root = "ProverbsHomePage";
   tab3Root = "ContactPage";
 
   constructor(navParams: NavParams) {

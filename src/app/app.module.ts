@@ -24,6 +24,8 @@ import { FileTransfer } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { SQLite } from '@ionic-native/sqlite'
 import { VideoDbProvider } from '../providers/video-db/video-db';
+import { ProverbsProvider } from '../providers/proverbs/proverbs';
+
 
 
 
@@ -54,7 +56,8 @@ import { VideoDbProvider } from '../providers/video-db/video-db';
     SQLite,
     VideoDbProvider,
     InAppBrowser,
-    ToastController
+    ToastController,
+    ProverbsProvider
   ],
   exports: [
   ]

@@ -14,12 +14,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'proverbs-home.html',
 })
 export class ProverbsHomePage {
+  title : string = "أقوال و حكم"
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProverbsHomePage');
+    
+  }
+
+  openPage(p){
+    this.navCtrl.push(p);
   }
 
 }

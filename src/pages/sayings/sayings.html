@@ -1,0 +1,61 @@
+<!--
+  Generated template for the SayingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="page-tutorial card-background-page" >
+  <!--<ion-slides pager dir="rtl" (ionSlideNextEnd)="loadNext()" (ionSlidePrevEnd)="loadPrev()" [loop]="true" [initialSlide]="1">
+    <ion-slide *ngFor="let item of data" >
+      <ion-card [style.backgroundImage]="'url(assets/icon/sayings-backgroung.jpg)'">
+        <img src="assets/icon/sayings-backgroung.jpg" height="parent" class="card-img"/>
+        <span class="card-info">
+          <div class="card-subtitle">{{ item.author }}</div>
+          <div class="card-title">{{ item.text }}</div>
+        </span>
+        <span class="card-time">
+          <button ion-button icon-only>
+            <ion-icon name="star"></ion-icon>
+          </button>
+        </span>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>-->
+
+
+  <ion-card [style.backgroundImage]="'url(assets/icon/sayings-backgroung.jpg)'">
+    <img src="assets/icon/sayings-backgroung.jpg" height="parent" class="card-img"/>
+    <span class="card-info">
+      <div class="card-subtitle">{{ item.author }}</div>
+      <div class="card-title">{{ item.text }}</div>
+    </span>
+    <span class="card-time">
+      <button ion-button icon-only>
+        <ion-icon name="star"></ion-icon>
+      </button>
+    </span>
+  </ion-card>
+
+  <div class="center">
+    <button ion-button round outline>
+      <ion-icon name="md-arrow-round-forward" (click)="next()"></ion-icon>
+    </button>
+    <button ion-button round outline (click)="random()">
+      "عشوائي"
+    </button>
+    <button ion-button round outline>
+      <ion-icon name="md-arrow-round-back" (click)="prev()"></ion-icon>
+    </button>
+  </div>
+  
+
+</ion-content>
