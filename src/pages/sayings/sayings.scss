@@ -25,7 +25,7 @@ page-sayings {
     .card-info {
         position: absolute;
         top: 30%;
-        left: 30px;
+        left: 10px;
         right: 10px;
         text-align: right;
     }
@@ -45,7 +45,7 @@ page-sayings {
     .card-title {
         //position: absolute;
         //top: 36%;
-        font-size: 1.1em;
+        font-size: 1.5em;
         width: 100%;
         font-weight: bold;
         color: #fff;
@@ -59,6 +59,7 @@ page-sayings {
         right: 5px;
         width: 100%;
         color: #fff;
+        text-align: left;
     }
 
 

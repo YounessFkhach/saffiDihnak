@@ -26,6 +26,7 @@ import { SQLite } from '@ionic-native/sqlite'
 import { VideoDbProvider } from '../providers/video-db/video-db';
 import { ProverbsProvider } from '../providers/proverbs/proverbs';
 
+import { AdMobFree } from '@ionic-native/admob-free'
 
 
 
@@ -57,7 +58,8 @@ import { ProverbsProvider } from '../providers/proverbs/proverbs';
     VideoDbProvider,
     InAppBrowser,
     ToastController,
-    ProverbsProvider
+    ProverbsProvider,
+    AdMobFree
   ],
   exports: [
   ]

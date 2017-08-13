@@ -9,7 +9,11 @@
 <ion-content dir="rtl" padding class="card-background-page">
 
   <ion-card *ngFor="let video of videos" (click)="openVideo(video)">
-    <img class="card-img" [src]="video.image" height="parent"/>
+    <img class="card-img" src="assets/icon/placeholder.jpg" height="parent" class="card-img placeholder"/>
+    <img onError="this.src='assets/icon/placeholder.jpg'" class="card-img" [src]="video.image" height="parent"/>
+    <span class="watched-icon" *ngIf="video.isWatched">
+      <ion-icon name="eye"></ion-icon>
+    </span>
     <span class="card-info">
       <div class="card-subtitle">{{ video.viewCount }} مشاهدة</div>
       <div class="card-title">{{video.title}}</div>

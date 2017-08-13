@@ -35,8 +35,8 @@
   <ion-card [style.backgroundImage]="'url(assets/icon/sayings-backgroung.jpg)'">
     <img src="assets/icon/sayings-backgroung.jpg" height="parent" class="card-img"/>
     <span class="card-info">
-      <div class="card-subtitle">{{ item.author }}</div>
       <div class="card-title">{{ item.text }}</div>
+      <div class="card-subtitle">{{ item.author }}</div>
     </span>
     <span class="card-time">
       <button ion-button icon-only>
@@ -50,7 +50,7 @@
       <ion-icon name="md-arrow-round-forward" (click)="next()"></ion-icon>
     </button>
     <button ion-button round outline (click)="random()">
-      "عشوائي"
+      عشوائي
     </button>
     <button ion-button round outline>
       <ion-icon name="md-arrow-round-back" (click)="prev()"></ion-icon>

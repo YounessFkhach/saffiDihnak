@@ -38,8 +38,12 @@ export class VideoDbProvider {
                   .then(() => {
                     db.executeSql('CREATE TABLE IF NOT EXISTS `riddles` (`_id` INTEGER PRIMARY KEY, `id` VARCHAR(20) UNIQUE, `image` VARCHAR(100), `description` TEXT, `title` VARCHAR(110), `duration` VARCHAR(10), `viewCount` INT);', {})
                       .then(() => {
-                        console.log("All tables were created")
-                        resolve("done");
+                        db.executeSql('CREATE TABLE IF NOT EXISTS `watched` (`_id` INTEGER PRIMARY KEY, `id` VARCHAR(20) UNIQUE);', {})
+                          .then(() => {
+                            console.log("All tables were created")
+                            resolve("done");
+                          })
+                          .catch(e => console.log(e))
                       })
                       .catch(e => console.log(e))
                   })
@@ -103,7 +107,36 @@ export class VideoDbProvider {
     });
   }
 
+  getWatched(){
+    return new Promise((resolve, reject)=>{
+      this.db.executeSql('select * from `watched` order by _id desc', {})
+        .then((data) => {
+          //after recieving videos
+          var watchedArray : string[] = []
+          if(data == null) return;
+          
+          if(data.rows && data.rows.length > 0){
+            for(let i = 0; i < data.rows.length; i++) {
+              watchedArray.push(data.rows.item(i).id);
+            }
+          }
+          resolve(watchedArray);
+        })
+        .catch(e => {
+          console.log(e)
+          reject(e)
+        });
+      }).catch(e => console.log(e))
+  }
 
+  setWatched(id : string){
+    this.db.executeSql('insert into `watched` (id) values (?)', [id])
+      .then((data) => {console.log("video is added to watched")})
+      .catch(e => {
+        console.log("error inserting video to watched")
+        //console.log(e)
+      });
+  }
 
 
 }

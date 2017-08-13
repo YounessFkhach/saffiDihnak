@@ -66,6 +66,9 @@ export class HomePage {
                           })
                         });
           })
+          
+          //check for watched videos
+          this.checkWatched();
 
           // schedule un update
           setTimeout(() => {
@@ -93,6 +96,19 @@ export class HomePage {
       video: video
     });
   }
+
+  checkWatched(){
+    this.videoDb.getWatched().then((res : string[]) => {
+      res.map(item => {
+        this.videos.forEach(video => {
+          if(video.id == item){
+            video.isWatched = true
+          }
+        });
+      })
+    })
+  }
+
 
 
   updateVideos(){
@@ -153,6 +169,11 @@ export class HomePage {
       }
 
       this.updateVideos();
+
+
+      this.checkWatched();
+
+
       //complete the refresh
       if(refresher)
         refresher.complete();
@@ -204,6 +225,8 @@ export class HomePage {
               //if(!this.idExists(item.id))
               this.videos.push(new VideoDetail(item))
             });
+
+            this.checkWatched()
 
             infiniteScroll.complete()
             this.isLoading = false;

@@ -1,3 +1,4 @@
+import { VideoDbProvider } from './../../providers/video-db/video-db';
 
 import { VideoDetail, VideosProvider } from './../../providers/videos/videos';
 import { Component } from '@angular/core';
@@ -32,12 +33,14 @@ export class VideoListPage {
 
   constructor(  public navCtrl: NavController, 
                 public navParams: NavParams, 
-                private videosProvider : VideosProvider) {
+                private videosProvider : VideosProvider,
+                private videoDb : VideoDbProvider) {
 
     this.nextPageToken = navParams.get("pageToken")
     this.playListId = navParams.get("playListId")
     this.title = navParams.get("title")
     this.getNext();
+    this.navCtrl.viewDidEnter.asObservable().subscribe(this.checkWatched)
   }
 
   getNext(){
@@ -46,6 +49,7 @@ export class VideoListPage {
       this.videosIds = res.json().items.map(item => item.contentDetails.videoId);
       this.videosProvider.getInfo(this.videosIds).subscribe(res => {
         this.videos = res.json().items.map(item => new VideoDetail(item));
+        this.checkWatched()
       })
     })
   }
@@ -61,6 +65,17 @@ export class VideoListPage {
     this.getNext()
   }
 
+  checkWatched(){
+    this.videoDb.getWatched().then((res : string[]) => {
+      res.map(item => {
+        this.videos.forEach(video => {
+          if(video.id == item){
+            video.isWatched = true
+          }
+        });
+      })
+    })
+  }
 
 
   idExists(id : string){

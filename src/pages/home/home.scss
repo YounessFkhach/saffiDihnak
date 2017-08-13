@@ -51,6 +51,7 @@ page-home {
         right: 5px;
         width: 100%;
         color: #fff;
+        text-shadow: black 0.1em 0.1em 0.1em;
     }
 
 
@@ -60,6 +61,7 @@ page-home {
         left: 10px;
         text-align: left;
         width: 100%;
+        text-shadow: black 0.1em 0.1em 0.1em;
     }
 
     .video-time {
@@ -69,6 +71,17 @@ page-home {
         color: #fff;
         text-align: left;
         
+    }
+
+    .watched-icon{
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        font-size: medium;
+        text-align: left;
+        width: 100%;
+        color: #D32F2F;
+        text-align: right;
     }
 
     .placeholder-message {

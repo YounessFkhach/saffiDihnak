@@ -2,7 +2,23 @@
 
 X|> a playlist place holder {{ the thing that shows if no video was stored }}
 
-...|> create the proverbs page
+X|> create the proverbs page
+
+...|> change the proverbs design to get bigger
+...|> add the json file to the server and link it to the app
+...|> change the placeholder 
+X|> add the shadow to the viewCount and the duration
+...|> add viewCount and duration to video details
+...|> delete the description and replace it with next/prev buttons
+X|> keep record of the watched videos (small eye icon)
+X|> the rewardVideo should show only if the user watched the video
+...|> 
+
+
+
+
+
+
 
 
 

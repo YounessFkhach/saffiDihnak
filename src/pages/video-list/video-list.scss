@@ -1,3 +1,88 @@
 page-video-list {
 
 }
+
+ion-card {
+        position: relative;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    .card-info {
+        position: absolute;
+        bottom: 0;
+        left: 30px;
+        right: 10px;
+        text-align: right;
+    }
+
+    .card-img {
+        flex-shrink: 0;
+        min-width: 100%;
+        min-height: 100%;
+        position: absolute;
+    }
+
+    .placeholder {
+        position: relative;
+    }
+
+    .card-title {
+        //position: absolute;
+        //top: 36%;
+        font-size: 1.1em;
+        width: 100%;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: black 0.1em 0.1em 0.1em;
+        text-align: right;
+    }
+
+    .card-subtitle {
+        font-size: 0.9em;
+        font-weight: bold;
+        right: 5px;
+        width: 100%;
+        color: #fff;
+        text-shadow: black 0.1em 0.1em 0.1em;
+    }
+
+
+    .card-time {
+        position: absolute;
+        bottom: 0;
+        left: 10px;
+        text-align: left;
+        width: 100%;
+        text-shadow: black 0.1em 0.1em 0.1em;
+    }
+
+    .video-time {
+        font-size: 0.8em;
+        font-weight: bold;
+        width: 100%;
+        color: #fff;
+        text-align: left;
+        
+    }
+
+    .watched-icon{
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        font-size: medium;
+        text-align: left;
+        width: 100%;
+        color: #D32F2F;
+        text-align: right;
+    }
+
+    .placeholder-message {
+        text-align: center;
+        margin: 20px;
+    }

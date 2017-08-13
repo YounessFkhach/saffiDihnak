@@ -54,6 +54,7 @@ export class VideoDetail {
   duration : string
   url : string
   image : string
+  isWatched : boolean = false;
 
   constructor(data : any){
     if(data.snippet){
