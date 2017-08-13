@@ -59,7 +59,8 @@ import { AdMobFree } from '@ionic-native/admob-free'
     InAppBrowser,
     ToastController,
     ProverbsProvider,
-    AdMobFree
+    AdMobFree,
+    ProverbsProvider
   ],
   exports: [
   ]

@@ -91,9 +91,13 @@ export class HomePage {
     })
   }
 
-  openVideo(video) {
+  openVideo(video, index) {
+    console.log(video)
+    console.log(index)
     this.navCtrl.push("VideoDetailPage", {
-      video: video
+      video: video,
+      index: index,
+      videos : this.videos
     });
   }
 

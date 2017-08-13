@@ -1,3 +1,4 @@
+import { SocialSharing } from '@ionic-native/social-sharing';
 import { AdMobFree, AdMobFreeRewardVideoConfig } from '@ionic-native/admob-free';
 import { ProverbsProvider } from './../../providers/proverbs/proverbs';
 import { Component, ViewChild } from '@angular/core';
@@ -28,25 +29,63 @@ export class SayingsPage {
               public navParams : NavParams, 
               private provProvider : ProverbsProvider,
               private viewCtrl : ViewController,
-              private admobFree : AdMobFree) {
-    
-    this.provProvider.getData("sayings").subscribe(res => {
-      this.proverbs = res.json().items
-      this.proverbs = this.shuffleArray(this.proverbs)
-      console.table(this.proverbs)
+              private admobFree : AdMobFree,
+              private socialSharing : SocialSharing) {
+    this.provProvider.init().then(()=>{
+      //try to load the sayings from the dataBase
+      console.log("database initialised")
+      this.provProvider.getAllSayings().then((res : any[])=> {
+        console.log("got the response from the table")
+        if(!res.length){
+          console.log("db response is null")
+          // if the dataBase is empty then load them from the local file
+          this.provProvider.getLocalData("sayings").subscribe(res => {
+            console.log("got the data from local file")
+            this.proverbs = this.shuffleArray(res.json().items)
 
-      console.table(this.proverbs)
+            this.index = 0;
 
-      this.index = 0;
+            this.item = this.proverbs[this.index]
+          })   
+        }else{
+          // if the dataBase contains items then save them to the array
+          console.log("db response is not null")
+          this.proverbs = this.shuffleArray(res);
+          this.index = 0;
 
-      this.item = this.proverbs[this.index]
+          this.item = this.proverbs[this.index]
+        }
+
+      })
+      .catch((e)=> console.error(e))
+
+      // schedule un update
+      setTimeout(() => {
+        this.getfromServer()
+      }, 5000);
 
 
-    })      
-      
+    }) 
 
   }
 
+  getfromServer(){
+    console.log("getting items  from server")
+    this.provProvider.getServerData("sayings").subscribe(res => {
+        // add the fetched data to the dataBase
+        // then push them to the providers array
+        this.shuffleArray(res.json().items).map(item => {
+          this.provProvider.insertSaying(item)
+            .then(() => {
+              this.proverbs.push(item)
+            })
+            .catch(() => {
+              //the item is already added
+            })
+
+        })
+      })
+  }
 
   ionViewDidLoad() {
     const videoConfig: AdMobFreeRewardVideoConfig = {
@@ -91,6 +130,10 @@ export class SayingsPage {
       this.showAd()
     }
 
+    share(){
+      this.socialSharing.share(" '" + this.item.text + "' " + this.item.author + "\n" + "المزيد على قناة " + "https://www.youtube.com/user/tuuuubeable", "صفي ذهنك")
+    }
+
     showAd(){
       if(this.clickCount > 30){
         this.admobFree.rewardVideo.isReady().then(() => {
@@ -102,7 +145,7 @@ export class SayingsPage {
             .catch((e) => console.log("ad not showing"))
         })
       }
-    }
+      }
 
   shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
@@ -113,5 +156,7 @@ export class SayingsPage {
     }
     return array;
   }
+
+
 
 }

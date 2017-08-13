@@ -38,11 +38,14 @@
       <div class="card-title">{{ item.text }}</div>
       <div class="card-subtitle">{{ item.author }}</div>
     </span>
-    <span class="card-time">
-      <button ion-button icon-only>
-        <ion-icon name="star"></ion-icon>
+    <!--<span class="card-time">
+      <button color="secondary" ion-button round icon-only (click)="share()">
+        <ion-icon name="share"></ion-icon>
       </button>
-    </span>
+    </span>-->
+    <ion-fab right bottom (click)="share()">
+      <button ion-fab color="secondary"><ion-icon name="share"></ion-icon></button>
+    </ion-fab>
   </ion-card>
 
   <div class="center">

@@ -1,3 +1,4 @@
+import { VideoDetail } from './../../providers/videos/videos';
 import { VideoDbProvider } from './../../providers/video-db/video-db';
 import { AdMobFree, AdMobFreeRewardVideoConfig, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
@@ -12,8 +13,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'video-detail.html',
 })
 export class VideoDetailPage {
-  video : any;
+  video : VideoDetail;
   isWatched: boolean = false
+  index : number
+  videos : VideoDetail[];
 
   constructor(  public navCtrl: NavController, 
                 public navParams: NavParams, 
@@ -24,6 +27,8 @@ export class VideoDetailPage {
                 ) {
                   
             this.video = this.navParams.get('video')
+            this.index = this.navParams.get('index')
+            this.videos = this.navParams.get('videos')
 
             const videoConfig: AdMobFreeRewardVideoConfig = {
               id: "ca-app-pub-1487801603037906/4358205508",
@@ -46,12 +51,12 @@ export class VideoDetailPage {
     this.admobFree.rewardVideo.prepare()
                 .then(() => {
                   this.navCtrl.viewWillUnload.asObservable().subscribe(() => {
-                    console.log("VideoDetail will leave")
+                    //console.log("VideoDetail will leave")
                     if(this.isWatched){
                       this.admobFree.rewardVideo.isReady()
                         .then(() => {
                           this.admobFree.rewardVideo.show().then(() => {
-                            console.log("rewardVideo is showing")                    
+                            //console.log("rewardVideo is showing")                    
                           })
                         })
                         .catch((e) => console.log("Ad is no ready"))
@@ -63,7 +68,7 @@ export class VideoDetailPage {
 
     this.admobFree.banner.prepare()
       .then(() => {
-        console.log("banner is showing")
+        //console.log("banner is showing")
       })
       .catch(e => console.log(e));
 
@@ -90,6 +95,34 @@ export class VideoDetailPage {
 	  return text1.replace(exp2, '$1<a target="_blank" href="http://$2">$2</a>');
   }
 
+  next(){
+
+    if(this.index == this.videos.length-1)
+      return
+    this.index++
+    this.video = this.videos[this.index]
+
+
+    // this.admobFree.banner.prepare()
+    //   .then(() => {
+    //     console.log("banner is showing")
+    //   })
+    //   .catch(e => console.log(e));
+  }
+
+  prev(){
+   
+    if(this.index == 0)
+      return
+    this.index--
+    this.video = this.videos[this.index]
+
+    // this.admobFree.banner.prepare()
+    //   .then(() => {
+    //     console.log("banner is showing")
+    //   })
+    //   .catch(e => console.log(e));
+  }
 
 
 }

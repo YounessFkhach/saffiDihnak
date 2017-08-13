@@ -10,9 +10,9 @@ page-sayings {
 
         // left: 10%;
         // right: 10%;
-        width: 80% !important;
+        width: 90% !important;
         // top: 10%;
-        height: 60%;
+        height: 70%;
         margin: 10% auto 15px auto !important;
         background-size: cover !important;
         background-repeat:   no-repeat !important;
@@ -24,7 +24,7 @@ page-sayings {
     }   
     .card-info {
         position: absolute;
-        top: 30%;
+        top: 20%;
         left: 10px;
         right: 10px;
         text-align: right;
@@ -65,9 +65,9 @@ page-sayings {
 
     .card-time {
         position: absolute;
-        bottom: 0;
-        left: 10px;
-        text-align: left;
+        bottom: 5px;
+        right: 10px;
+        text-align: right;
         width: 100%;
     }
 

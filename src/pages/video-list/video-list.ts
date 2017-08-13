@@ -54,9 +54,11 @@ export class VideoListPage {
     })
   }
 
-  openVideo(video) {
+  openVideo(video : VideoDetail, index : number) {
     this.navCtrl.push("VideoDetailPage", {
-      video: video
+      video: video,
+      index: index,
+      videos: this.videos
     });
   }
 

@@ -13,14 +13,22 @@ page-video-detail {
     .video-detail {
         width: 100%;
         background: white;
-        margin-bottom: 40px;
+        padding-top: 0;
     }
 
-    
+    .next-prev {
+        padding-right: 50px;
+        padding-left:50px;
+        margin-bottom: 50px;
+    }
 
     .play-ico {
         margin: auto;
         display: block;
         height: 20%;
+    }
+
+    .center {
+        text-align: center;
     }
 }

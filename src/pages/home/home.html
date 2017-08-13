@@ -33,7 +33,7 @@
     </h6>
   </div>
 
-  <ion-card *ngFor="let video of videos" (click)="openVideo(video)">
+  <ion-card *ngFor="let video of videos; let i = index" (click)="openVideo(video, i)">
     <img class="card-img" src="assets/icon/placeholder.jpg" height="parent" class="card-img placeholder"/>
     <img onError="this.src='assets/icon/placeholder.jpg'" class="card-img" [src]="video.image" height="parent"/>
     <span class="watched-icon" *ngIf="video.isWatched">

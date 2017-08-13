@@ -22,7 +22,35 @@
   </div>
   
   <div class="video-detail" padding>
+    <ion-grid>
+      <ion-row>
+        <ion-col offset-4>
+          <ion-badge item-end>{{ video.viewCount }} مشاهدة</ion-badge>
+        </ion-col>
+        <ion-col style="text-align: left;">
+          <ion-badge>{{ video.duration }}</ion-badge>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
     <h2>{{video.title}}</h2>
-    <p [innerHTML]="convert(video.description)" ></p>
   </div>
+
+  <ion-grid class="next-prev">
+    <ion-row>
+      <ion-col offset-2>
+        <button ion-button round outline (click)="next()">
+          <ion-icon name="md-arrow-round-forward"></ion-icon>
+           السابق
+        </button>
+      </ion-col>
+      <ion-col style="text-align: left;">
+        <button ion-button round outline (click)="prev()">
+          التالي 
+          <ion-icon name="md-arrow-round-back"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
 </ion-content>
