@@ -95,7 +95,7 @@ export class SayingsPage {
     };
     this.admobFree.rewardVideo.config(videoConfig);
     this.admobFree.rewardVideo.prepare().then(() => {
-      console.log("Ad is showing")
+      console.log("Ad is ready to be showed")
     })
 
   }
@@ -136,16 +136,16 @@ export class SayingsPage {
 
     showAd(){
       if(this.clickCount > 30){
-        this.admobFree.rewardVideo.isReady().then(() => {
-          this.admobFree.rewardVideo.show()
-            .then(() => {
-              console.log("ad is showing")
-              this.clickCount = 0
-            })
-            .catch((e) => console.log("ad not showing"))
-        })
+        this.admobFree.rewardVideo.show()
+          .then(() => {
+            console.log("ad is showing")
+            this.clickCount = 0
+          })
+          .catch((e) => console.log("ad not showing"))
+      }else if(this.clickCount == 1){
+        this.admobFree.rewardVideo.prepare()
       }
-      }
+    }
 
   shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {

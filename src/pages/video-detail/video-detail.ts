@@ -36,7 +36,20 @@ export class VideoDetailPage {
               autoShow: false
             };
             this.admobFree.rewardVideo.config(videoConfig);
-
+            this.admobFree.rewardVideo.prepare()
+                .then(() => {
+                  this.navCtrl.viewWillUnload.asObservable().subscribe(() => {
+                    console.log("VideoDetail will leave")
+                    if(this.isWatched){
+                      this.admobFree.rewardVideo.show()
+                        .then(() => {
+                            console.log("rewardVideo is showing")                    
+                        })
+                        .catch(e => console.error(e))
+                    }
+                  })
+                })
+                .catch(e => console.error(e))
 
             const bannerConfig: AdMobFreeBannerConfig = {
               id: "ca-app-pub-1487801603037906/3070186327",
@@ -44,33 +57,16 @@ export class VideoDetailPage {
               autoShow: true
             };
             this.admobFree.banner.config(bannerConfig);
+            this.admobFree.banner.prepare()
+              .then(() => {
+                //console.log("banner is showing")
+              })
+              .catch(e => console.log(e));
             
   }
 
   ionViewDidLoad() {
-    this.admobFree.rewardVideo.prepare()
-                .then(() => {
-                  this.navCtrl.viewWillUnload.asObservable().subscribe(() => {
-                    //console.log("VideoDetail will leave")
-                    if(this.isWatched){
-                      this.admobFree.rewardVideo.isReady()
-                        .then(() => {
-                          this.admobFree.rewardVideo.show().then(() => {
-                            //console.log("rewardVideo is showing")                    
-                          })
-                        })
-                        .catch((e) => console.log("Ad is no ready"))
-                    }
-                  })
-                })
-                .catch(e => console.error(e))
     
-
-    this.admobFree.banner.prepare()
-      .then(() => {
-        //console.log("banner is showing")
-      })
-      .catch(e => console.log(e));
 
   }
 
