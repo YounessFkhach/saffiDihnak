@@ -1,5 +1,5 @@
 import { VideoDbProvider } from './../../providers/video-db/video-db';
-import { IonicPage, NavParams } from 'ionic-angular';
+import { IonicPage, NavParams, ModalController } from 'ionic-angular';
 import { VideosProvider, VideoDetail } from './../../providers/videos/videos';
 import { Component, ViewChild } from '@angular/core';
 import { NavController, Content, ToastController } from 'ionic-angular';
@@ -27,7 +27,8 @@ export class HomePage {
               private videosProvider : VideosProvider,
               private videoDb : VideoDbProvider, 
               navParams : NavParams,
-              private toastCtrl : ToastController) {
+              private toastCtrl : ToastController,
+              private modalCtrl : ModalController) {
 
     setTimeout(() => {
       this.showError = true;
@@ -94,11 +95,19 @@ export class HomePage {
   openVideo(video, index) {
     console.log(video)
     console.log(index)
-    this.navCtrl.push("VideoDetailPage", {
-      video: video,
-      index: index,
-      videos : this.videos
-    });
+    // this.navCtrl.push("VideoDetailPage", {
+    //   video: video,
+    //   index: index,
+    //   videos : this.videos
+    // });
+
+    this.modalCtrl
+      .create("VideoDetailPage", {
+        video: video,
+        index: index,
+        videos : this.videos
+      })
+      .present()
   }
 
   checkWatched(){

@@ -7,7 +7,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler, ToastController } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, ToastController, ModalController } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 // import { AboutPage } from '../pages/about/about';
@@ -60,7 +60,8 @@ import { AdMobFree } from '@ionic-native/admob-free'
     ToastController,
     ProverbsProvider,
     AdMobFree,
-    ProverbsProvider
+    ProverbsProvider,
+    ModalController
   ],
   exports: [
   ]

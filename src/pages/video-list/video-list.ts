@@ -2,7 +2,7 @@ import { VideoDbProvider } from './../../providers/video-db/video-db';
 
 import { VideoDetail, VideosProvider } from './../../providers/videos/videos';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 
 /**
  * Generated class for the VideoListPage page.
@@ -34,7 +34,8 @@ export class VideoListPage {
   constructor(  public navCtrl: NavController, 
                 public navParams: NavParams, 
                 private videosProvider : VideosProvider,
-                private videoDb : VideoDbProvider) {
+                private videoDb : VideoDbProvider,
+                private modalCtrl : ModalController) {
 
     this.nextPageToken = navParams.get("pageToken")
     this.playListId = navParams.get("playListId")
@@ -55,11 +56,13 @@ export class VideoListPage {
   }
 
   openVideo(video : VideoDetail, index : number) {
-    this.navCtrl.push("VideoDetailPage", {
-      video: video,
-      index: index,
-      videos: this.videos
-    });
+    this.modalCtrl
+      .create("VideoDetailPage", {
+        video: video,
+        index: index,
+        videos : this.videos
+      })
+      .present()
   }
 
   openMore(){
