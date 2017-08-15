@@ -38,7 +38,9 @@ import { AdMobFree } from '@ionic-native/admob-free'
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      tabsHideOnSubPages:"true",
+    }),
     HttpModule
   ],
   bootstrap: [IonicApp],

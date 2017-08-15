@@ -15,7 +15,7 @@ export class TabsPage {
   params : any
   tab1Root = "HomePage";
   tab2Root = "ProverbsHomePage";
-  tab3Root = "GamePage";
+  tab3Root = "GameWelcomePage";
 
   constructor(navParams: NavParams) {
     this.params = navParams.data

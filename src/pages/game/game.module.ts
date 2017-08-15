@@ -8,7 +8,9 @@ import { GamePage } from './game';
   ],
   imports: [
     IonicPageModule.forChild(GamePage),
-    AlertController
   ],
+  providers: [
+    AlertController,
+  ]
 })
 export class GamePageModule {}

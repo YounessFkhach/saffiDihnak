@@ -43,7 +43,7 @@ export class MyApp {
         }, 100);
       }
       this.platform.setDir('rtl', true);
-
+      
     });
   }
 

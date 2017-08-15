@@ -62,6 +62,11 @@ export class VideoDetailPage {
                 //console.log("banner is showing")
               })
               .catch(e => console.log(e));
+
+    // hide the banner whene the user exits the view
+    this.navCtrl.viewWillLeave.asObservable().subscribe(() => {
+      this.admobFree.banner.hide()
+    })
             
   }
 

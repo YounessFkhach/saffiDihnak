@@ -1,5 +1,5 @@
 import { SocialSharing } from '@ionic-native/social-sharing';
-import { AdMobFree, AdMobFreeRewardVideoConfig } from '@ionic-native/admob-free';
+import { AdMobFree, AdMobFreeRewardVideoConfig, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 import { ProverbsProvider } from './../../providers/proverbs/proverbs';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, Slides } from 'ionic-angular';
@@ -65,8 +65,26 @@ export class SayingsPage {
       }, 5000);
 
 
-    }) 
+    })
 
+
+    // show the banner
+    const bannerConfig: AdMobFreeBannerConfig = {
+              id: "ca-app-pub-1487801603037906/3070186327",
+              isTesting: false,
+              autoShow: true
+            };
+            this.admobFree.banner.config(bannerConfig);
+            this.admobFree.banner.prepare()
+              .then(() => {
+                //console.log("banner is showing")
+              })
+              .catch(e => console.log(e)); 
+
+    // hide the banner whene the user exits the view  
+    this.navCtrl.viewWillLeave.asObservable().subscribe(() => {
+      this.admobFree.banner.hide()
+    })
   }
 
   getfromServer(){
