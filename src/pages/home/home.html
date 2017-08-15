@@ -34,8 +34,8 @@
   </div>
 
   <ion-card *ngFor="let video of videos; let i = index" (click)="openVideo(video, i)">
-    <img class="card-img" src="assets/icon/placeholder.jpg" height="parent" class="card-img placeholder"/>
-    <img onError="this.src='assets/icon/placeholder.jpg'" class="card-img" [src]="video.image" height="parent"/>
+    <img class="card-img" src="assets/icon/placeholder.png" height="parent" class="card-img placeholder"/>
+    <img onError="this.src='assets/icon/placeholder.png'" class="card-img" [src]="video.image" height="parent"/>
     <span class="watched-icon" *ngIf="video.isWatched">
       <ion-icon name="eye"></ion-icon>
     </span>
