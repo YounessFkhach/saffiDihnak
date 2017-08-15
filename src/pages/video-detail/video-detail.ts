@@ -54,7 +54,8 @@ export class VideoDetailPage {
             const bannerConfig: AdMobFreeBannerConfig = {
               id: "ca-app-pub-1487801603037906/3070186327",
               isTesting: false,
-              autoShow: true
+              autoShow: true,
+              overlap: true
             };
             this.admobFree.banner.config(bannerConfig);
             this.admobFree.banner.prepare()

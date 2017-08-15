@@ -1,23 +1,26 @@
 <!-- Generated template for the VideoDetailComponent component -->
 <ion-header dir="rtl">
 
-  <ion-navbar>
+  <!--<ion-navbar>
     <ion-title>صفي ذهنك</ion-title>
-  </ion-navbar>
+  </ion-navbar>-->
 
 </ion-header>
 
 
 <ion-content dir="rtl">
 
-  <ion-fab right bottom (click)="shareVideo()">
+  <ion-fab bottom right (click)="shareVideo()" class="share-btn">
     <button ion-fab color="secondary"><ion-icon name="share"></ion-icon></button>
   </ion-fab>
-
+  
   <div class="video-profile" text-center 
         #profilePic 
         [style.background-image]="'url(' + video.image + ')'"
         (click)="playVideo()">
+      <span class="watched-icon" *ngIf="video.isWatched">
+        <ion-icon name="eye"></ion-icon>
+      </span>
       <img src="assets/icon/youtube-play.png" alt="مشاهدة" class="play-ico">
   </div>
   
@@ -35,22 +38,16 @@
     <h2>{{video.title}}</h2>
   </div>
 
-  <ion-grid class="next-prev">
-    <ion-row>
-      <ion-col offset-2>
-        <button ion-button round outline (click)="next()">
-          <ion-icon name="md-arrow-round-forward"></ion-icon>
-           السابق
-        </button>
-      </ion-col>
-      <ion-col style="text-align: left;">
-        <button ion-button round outline (click)="prev()">
-          التالي 
-          <ion-icon name="md-arrow-round-back"></ion-icon>
-        </button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <div class="next-prev">
+    <button ion-button round outline (click)="next()">
+      <ion-icon name="md-arrow-round-forward"></ion-icon>
+        السابق
+    </button>
+    <button ion-button round outline (click)="prev()">
+      التالي 
+      <ion-icon name="md-arrow-round-back"></ion-icon>
+    </button>
+  </div>
 
 
 </ion-content>
