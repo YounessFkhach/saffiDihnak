@@ -27,6 +27,25 @@ import { VideoDbProvider } from '../providers/video-db/video-db';
 import { ProverbsProvider } from '../providers/proverbs/proverbs';
 
 import { AdMobFree } from '@ionic-native/admob-free'
+import { GameProvider } from '../providers/game/game';
+import { UserStateProvider } from '../providers/user-state/user-state';
+
+
+// import { AngularFireModule } from 'angularfire2';
+// import { AngularFireDatabaseModule } from 'angularfire2/database';
+// import { AngularFireAuthModule } from 'angularfire2/auth';
+
+
+// export const FIREBASE_CONFIG = {
+//     apiKey: "AIzaSyAtajGRqYFfyWEvlX66FKxwzbHjpZfhoS0",
+//     authDomain: "saffidihnak-1fb26.firebaseapp.com",
+//     databaseURL: "https://saffidihnak-1fb26.firebaseio.com",
+//     projectId: "saffidihnak-1fb26",
+//     storageBucket: "saffidihnak-1fb26.appspot.com",
+//     messagingSenderId: "647194455379"
+//   };
+
+
 
 
 
@@ -38,10 +57,11 @@ import { AdMobFree } from '@ionic-native/admob-free'
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp, {
-      tabsHideOnSubPages:"true",
-    }),
-    HttpModule
+    IonicModule.forRoot(MyApp, {tabsHideOnSubPages : "true"}),
+    HttpModule,
+    // AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    // AngularFireAuthModule,
+    // AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -63,7 +83,9 @@ import { AdMobFree } from '@ionic-native/admob-free'
     ProverbsProvider,
     AdMobFree,
     ProverbsProvider,
-    ModalController
+    ModalController,
+    GameProvider,
+    UserStateProvider
   ],
   exports: [
   ]

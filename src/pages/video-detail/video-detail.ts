@@ -68,7 +68,8 @@ export class VideoDetailPage {
     this.navCtrl.viewWillLeave.asObservable().subscribe(() => {
       this.admobFree.banner.hide()
     })
-            
+    
+    
   }
 
   ionViewDidLoad() {

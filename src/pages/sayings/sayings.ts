@@ -117,6 +117,12 @@ export class SayingsPage {
       console.log("Ad is ready to be showed")
     })
 
+    this.navCtrl.viewWillLeave.asObservable().subscribe(() => {
+      this.admobFree.rewardVideo.show().then(() => {
+        console.log("the viewWillLeave ad is showing")
+      })
+    })
+
   }
 
     next(){

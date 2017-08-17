@@ -29,7 +29,7 @@ export class HomePage {
               navParams : NavParams,
               private toastCtrl : ToastController,
               private modalCtrl : ModalController) {
-
+                
     setTimeout(() => {
       this.showError = true;
     }, 3000);

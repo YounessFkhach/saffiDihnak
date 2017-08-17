@@ -1,5 +1,6 @@
+import { Storage } from '@ionic/storage';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the GameWelcomePage page.
@@ -14,9 +15,46 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'game-welcome.html',
 })
 export class GameWelcomePage {
+  user : any = {
+    name : "",
+    score: 0,
+  }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public alertCtrl: AlertController,
+              private storage: Storage) {
+
+    this.storage.get("userName")
+      .then(val => {
+        console.log("your name is: " + val);
+      })
     
+    this.storage.get("userId")
+      .then(val => console.log("your id: " + val))
+      .catch(e => console.error(e))
+                  
+    let prompt = this.alertCtrl
+                    .create({
+                      title : "سجل الدخول",
+                      inputs: [
+                        {
+                          name: "userName",
+                          placeholder: "الاسم"
+                        }
+                      ],
+                      buttons: [
+                        {
+                          text: "login",
+                          handler: data => {
+                            this.user.name = data.userName;
+                            this.storage.set("userName" , data.userName)
+                          }
+
+                        }
+                      ]
+                    })
+                    .present()
   }
 
   ionViewDidLoad() {
@@ -24,7 +62,9 @@ export class GameWelcomePage {
   }
 
   openGame(){
-    this.navCtrl.insert(this.navCtrl.length(), "GamePage")
+    this.navCtrl.insert(this.navCtrl.length(), "GamePage", {
+      user: this.user
+    })
   }
 
 }

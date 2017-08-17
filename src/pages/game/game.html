@@ -19,5 +19,7 @@
 
 
 <ion-content padding>
-
+    <button ion-button *ngFor="let qst of qsts; let i = index" class="qst-btn" (click)="openQst(i)"  [outline]="i == 1">
+      {{ i }}
+    </button>
 </ion-content>

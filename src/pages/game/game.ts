@@ -1,3 +1,4 @@
+import { GameProvider } from './../../providers/game/game';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
@@ -14,44 +15,32 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
   templateUrl: 'game.html',
 })
 export class GamePage {
-  user : any = {
-    name : "",
-    score: 0,
-  }
+  user : any
+  qsts: any[] = []
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController,
+              private gameProvider: GameProvider) {
 
-                
-                
-    let prompt = this.alertCtrl
-                    .create({
-                      title : "سجل الدخول",
-                      inputs: [
-                        {
-                          name: "userName",
-                          placeholder: "الاسم"
-                        }
-                      ],
-                      buttons: [
-                        {
-                          text: "login",
-                          handler: data => {
-                            this.user.name = data.userName;
-                            console.log("your name is: " + this.user.name)
-                          }
+    this.user = this.navParams.get("user")
 
-                        }
-                      ]
-                    })
-                    .present()
+    this.gameProvider.getQsts(1).subscribe(res => {
+      this.qsts = res.json().questions
+    })
+
+  
     
   }
 
 
   ionViewDidLoad() {
     
+  }
+
+
+  openQst(index : number){
+    console.table(this.qsts[index])
   }
 
 }
