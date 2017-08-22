@@ -17,15 +17,15 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
-    { title: 'الرئيسية', component: "TabsPage", params: {title: "صفي ذهنك", id: "UUxKWhe_05cuDe3ATBK_UnVA", table: "video"}},
+    { title: 'الرئيسية', component: "TabsPage", icon: "home", params: {title: "صفي ذهنك", id: "UUxKWhe_05cuDe3ATBK_UnVA", table: "video"}},
     
-    {title: "إختبارات شخصية", component: "HomePage", params: {title: "إختبارات شخصية", id: "PL99RYxjrqvl5gFa-jHUkmQFkhYoYmKTYn", table: "tests"}},
-    {title: "TOP 10 توب", component: "HomePage", params: {title: "TOP 10 توب", id: "PL99RYxjrqvl5Zgsd_MVeIHSokrHGwTzQe", table: "top"}},
-    {title: "ألغاز و حلول", component: "HomePage", params: {title: "ألغاز و حلول", id: "PL99RYxjrqvl4ttWbD-I9OJvqq23XjHG0J", table: "riddles"}},
+    {title: "إختبارات شخصية", icon: "trophy", component: "HomePage", params: {title: "إختبارات شخصية", id: "PL99RYxjrqvl5gFa-jHUkmQFkhYoYmKTYn", table: "tests"}},
+    {title: "TOP 10 توب", icon: "funnel", component: "HomePage", params: {title: "TOP 10 توب", id: "PL99RYxjrqvl5Zgsd_MVeIHSokrHGwTzQe", table: "top"}},
+    {title: "ألغاز و حلول", component: "HomePage", icon: "bulb", params: {title: "ألغاز و حلول", id: "PL99RYxjrqvl4ttWbD-I9OJvqq23XjHG0J", table: "riddles"}},
 
-    { title: 'قناة اليوتوب', component: ["https://www.youtube.com/user/tuuuubeable"] },
-    { title: 'صفحة الفايسبوك', component: ["https://www.facebook.com/saffidihnek/"] },
-    { title: 'حساب تويتر', component: ["https://twitter.com/saffidihnak"] },
+    { title: 'قناة اليوتوب', icon: "logo-youtube",component: ["https://www.youtube.com/user/tuuuubeable"] },
+    { title: 'صفحة الفايسبوك', icon: "logo-facebook", component: ["https://www.facebook.com/saffidihnek/"] },
+    { title: 'حساب تويتر', icon:"logo-twitter", component: ["https://twitter.com/saffidihnak"] }
   ]
 
 

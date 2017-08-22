@@ -256,7 +256,7 @@ export class HomePage {
       
       }
 
-      setTimeout(() => {infiniteScroll.complete();}, 5000);
+      setTimeout(() => {infiniteScroll.complete();}, 10000);
     }
   }
 
