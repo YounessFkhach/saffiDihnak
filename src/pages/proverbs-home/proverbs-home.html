@@ -19,7 +19,16 @@
 
 <ion-content padding>
 
-  <button ion-button block (click)="openPage('SayingsPage')" >أقوال</button>
-  <button ion-button block (click)="openPage('WisdomsPage')" >حكم</button>
+  <ion-card (click)="openPage('SayingsPage')">
+    <img src="assets/icon/aa.png"/>
+    <!--<div class="card-title">أقوال</div>-->
+  </ion-card>
+  <ion-card>
+    <img src="assets/icon/aa.png"/>
+    <!--<div class="card-title">حكم</div>-->
+  </ion-card>
+
+  <!--<button ion-button block (click)="openPage('SayingsPage')" >أقوال</button>
+  <button ion-button block (click)="openPage('WisdomsPage')" >حكم</button>-->
 
 </ion-content>

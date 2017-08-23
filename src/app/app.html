@@ -1,12 +1,29 @@
-<ion-menu side="right" [content]="content" dir="rtl">
-    <ion-header dir="rtl">
+<ion-menu side="right" [content]="content" dir="rtl" id="menu-avatar">
+    <!--<ion-header dir="rtl">
       <ion-navbar color="secondary">
         <ion-title>القائمة</ion-title>
       </ion-navbar>
-    </ion-header>
+    </ion-header>-->
 
     <ion-content dir="rtl">
-      <ion-list>
+      <div #header>
+        <ion-row style="align-items:center;">
+          <ion-col col-3>
+            <!--TO Add smtg here if needed-->
+          </ion-col>
+          <ion-col col-6>
+            <img class="user-avatar round" src="assets/icon/icon.png"/>
+          </ion-col>
+          <ion-col col-3>
+            <!--<img src="assets/icon/icon-calendar.svg" />-->
+          </ion-col>
+        </ion-row>
+        <ion-row style="justify-content: center;">
+          <h3>صفي ذهنك</h3>
+        </ion-row>
+      </div>
+
+      <ion-list no-lines>
         <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
           <ion-icon [name]="p.icon" item-start></ion-icon>
           {{p.title}}

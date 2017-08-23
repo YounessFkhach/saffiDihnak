@@ -105,7 +105,12 @@ $colors: (
 
 //@import "roboto";
 //@import "noto-sans";
-
+@font-face {
+    font-family: 'Cairo';
+    src: url('../assets/files/Cairo-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 $font-family-ios-base: "Cairo", -apple-system, "Helvetica Neue", "Roboto", sans-serif;
 $font-family-md-base: "Cairo", "Roboto", "Helvetica Neue", sans-serif;

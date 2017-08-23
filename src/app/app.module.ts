@@ -34,6 +34,8 @@ import { UserStateProvider } from '../providers/user-state/user-state';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
+import { LocalNotifications } from '@ionic-native/local-notifications';
+
 
 export const FIREBASE_CONFIG = {
     apiKey: "AIzaSyAtajGRqYFfyWEvlX66FKxwzbHjpZfhoS0",
@@ -83,7 +85,8 @@ export const FIREBASE_CONFIG = {
     ProverbsProvider,
     ModalController,
     GameProvider,
-    UserStateProvider
+    UserStateProvider,
+    LocalNotifications
   ],
   exports: [
   ]

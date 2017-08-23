@@ -15,13 +15,6 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-@font-face {
-    font-family: 'Cairo';
-    src: url('../assets/fonts/Cairo-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 
 html[dir="rtl"] {
     .back-button-icon.icon-md.back-button-icon-md.ion-md-arrow-back {
@@ -38,4 +31,27 @@ html[dir="rtl"] {
     width: 90%;
     margin: 10px auto;
     display: block;
+}
+
+#menu-avatar {
+  .user-avatar {
+    padding: .5em;
+  }
+  h3,
+  .label {
+    color: white;
+    font-weight: bold;
+  }
+  .item {
+    background: transparent;
+  }
+  ion-content {
+    background: linear-gradient(48deg, rgba(157, 72, 173, 0.8) 0%, rgba(157, 72, 173, 0.86) 28%, rgba(0, 168, 168, 0.98) 93%, rgba(0, 168, 168, 1) 100%);
+  }
+  .menu-inner {
+    background: rgba(255, 255, 255, .3);
+  }
+  ion-icon {
+      color: white;
+  }
 }

@@ -1,7 +1,7 @@
 import { GameProvider } from './../../providers/game/game';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
+// import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the GameStagePage page.
@@ -22,7 +22,8 @@ export class GameStagePage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public gameProvider: GameProvider,
-              private storage : Storage) {
+              // private storage : Storage
+              ){
     
     this.stageId = this.navParams.get("stageId")
     

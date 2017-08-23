@@ -31,22 +31,31 @@
     </ion-slide>
   </ion-slides>-->
 
-
+<!--
   <ion-card [style.backgroundImage]="'url(assets/icon/sayings-backgroung.jpg)'">
     <img src="assets/icon/sayings-backgroung.jpg" height="parent" class="card-img"/>
     <span class="card-info">
       <div class="card-title">{{ item.text }}</div>
       <div class="card-subtitle">{{ item.author }}</div>
     </span>
-    <!--<span class="card-time">
-      <button color="secondary" ion-button round icon-only (click)="share()">
-        <ion-icon name="share"></ion-icon>
-      </button>
-    </span>-->
     <ion-fab right bottom (click)="share()">
       <button ion-fab color="secondary"><ion-icon name="share"></ion-icon></button>
     </ion-fab>
-  </ion-card>
+  </ion-card>-->
+
+    <figure class="snip1574">
+			<img [src]="item.imageUrl" alt="" />
+			<figcaption>
+				<blockquote>
+					<p>{{item.text}}</p>
+				</blockquote>
+				<h3>{{item.author}}</h3>
+				<!--<h5>{{testimonial.position}}</h5>-->
+			</figcaption>
+      <ion-fab right bottom (click)="share()">
+        <button ion-fab color="secondary"><ion-icon name="share"></ion-icon></button>
+      </ion-fab>
+		</figure>
 
   <div class="center">
     <button ion-button round outline>

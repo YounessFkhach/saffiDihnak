@@ -2,7 +2,8 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { AdMobFree, AdMobFreeRewardVideoConfig, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 import { ProverbsProvider } from './../../providers/proverbs/proverbs';
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, Slides } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 
 
@@ -28,9 +29,10 @@ export class SayingsPage {
   constructor(public navCtrl : NavController, 
               public navParams : NavParams, 
               private provProvider : ProverbsProvider,
-              private viewCtrl : ViewController,
+              // private viewCtrl : ViewController,
               private admobFree : AdMobFree,
-              private socialSharing : SocialSharing) {
+              private socialSharing : SocialSharing,
+              private localNotifications: LocalNotifications) {
     this.provProvider.init().then(()=>{
       //try to load the sayings from the dataBase
       console.log("database initialised")
@@ -43,6 +45,11 @@ export class SayingsPage {
             console.log("got the data from local file")
             this.proverbs = this.shuffleArray(res.json().items)
 
+            this.proverbs = this.proverbs.map(item => {
+                                  item["imageUrl"] = "assets/icon/testimonial-" + Math.floor((Math.random() * 3) + 1) + ".jpg"
+                                  return item
+                                })
+
             this.index = 0;
 
             this.item = this.proverbs[this.index]
@@ -51,6 +58,12 @@ export class SayingsPage {
           // if the dataBase contains items then save them to the array
           console.log("db response is not null")
           this.proverbs = this.shuffleArray(res);
+
+          this.proverbs = this.proverbs.map(item => {
+                                  item["imageUrl"] = "assets/icon/testimonial-" + Math.floor((Math.random() * 3) + 1) + ".jpg"
+                                  return item
+                                })
+
           this.index = 0;
 
           this.item = this.proverbs[this.index]
@@ -148,6 +161,7 @@ export class SayingsPage {
     }
 
     random(){
+      this.notify();
       this.clickCount++
       console.log("random")
       this.index = Math.floor(Math.random()*this.proverbs.length)
@@ -182,6 +196,14 @@ export class SayingsPage {
     return array;
   }
 
+  notify(){
+    //TO DO local notifications
+    this.localNotifications.schedule({
+      id: 1,
+      title: "This is a godamn notification",
+      text: 'Hello friend!'
+    });
+  }
 
 
 }

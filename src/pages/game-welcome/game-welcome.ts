@@ -15,6 +15,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
   templateUrl: 'game-welcome.html',
 })
 export class GameWelcomePage {
+  prompt : any;
   user : any = {
     name : "",
     score: 0,
@@ -34,7 +35,7 @@ export class GameWelcomePage {
       .then(val => console.log("your id: " + val))
       .catch(e => console.error(e))
                   
-    let prompt = this.alertCtrl
+    this.prompt = this.alertCtrl
                     .create({
                       title : "سجل الدخول",
                       inputs: [

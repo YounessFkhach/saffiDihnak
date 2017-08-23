@@ -51,8 +51,9 @@ export class MyApp {
   openPage(p){
     //check if p is page or link
     if(p.component instanceof Array){
-      let browser = this.iab.create(p.component[0], '_system');
-      console.log("open link: " + p.title)
+      var browser = this.iab.create(p.component[0], '_system');
+      console.log(browser)
+      console.log("open link: " + browser)
     }else{
       this.nav.setRoot(p.component, p.params)
       console.log("open page: " + p.title)
