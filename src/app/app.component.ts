@@ -1,3 +1,4 @@
+import { OneSignal } from '@ionic-native/onesignal';
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -29,19 +30,44 @@ export class MyApp {
   ]
 
 
-  constructor(private platform: Platform,private statusBar: StatusBar,private splashScreen: SplashScreen, private iab: InAppBrowser) {
+  constructor(private platform: Platform,
+              private statusBar: StatusBar,
+              private splashScreen: SplashScreen,
+              private iab: InAppBrowser,
+              private oneSignal: OneSignal ){
+
+
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.backgroundColorByHexString('#4e3376');
       statusBar.styleDefault();
       splashScreen.hide();
+      
       if (this.splashScreen) {
         setTimeout(() => {
           this.splashScreen.hide();
            this.platform.setDir('rtl', true);
         }, 100);
       }
+
+
+      //Setting up one signal
+        this.oneSignal.startInit('56c91fc7-39da-4650-9ef3-d66f90de4089', '647194455379');
+
+        this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+
+        this.oneSignal.handleNotificationReceived().subscribe(() => {
+          console.log("Notification recieved")
+        });
+
+        this.oneSignal.handleNotificationOpened().subscribe(() => {
+          console.log("notification opened")
+        });
+
+        this.oneSignal.endInit();
+
+
       this.platform.setDir('rtl', true);
       
     });

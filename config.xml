@@ -96,4 +96,5 @@
     <plugin name="cordova-sqlite-storage" spec="^2.0.4" />
     <plugin name="de.appplant.cordova.plugin.local-notification" spec="git+https://github.com/katzer/cordova-plugin-local-notifications.git" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
+    <plugin name="onesignal-cordova-plugin" spec="^2.2.0" />
 </widget>

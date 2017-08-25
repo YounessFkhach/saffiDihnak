@@ -7,3 +7,8 @@ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.
 
 
 IvThocVirfidVi7
+
+OneSignal appId: 56c91fc7-39da-4650-9ef3-d66f90de4089
+
+
+

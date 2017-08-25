@@ -36,6 +36,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { LocalNotifications } from '@ionic-native/local-notifications';
 
+import { OneSignal } from '@ionic-native/onesignal';
 
 export const FIREBASE_CONFIG = {
     apiKey: "AIzaSyAtajGRqYFfyWEvlX66FKxwzbHjpZfhoS0",
@@ -86,7 +87,8 @@ export const FIREBASE_CONFIG = {
     ModalController,
     GameProvider,
     UserStateProvider,
-    LocalNotifications
+    LocalNotifications,
+    OneSignal
   ],
   exports: [
   ]

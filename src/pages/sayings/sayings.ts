@@ -198,6 +198,34 @@ export class SayingsPage {
 
   notify(){
     //TO DO local notifications
+    this.localNotifications.getAll().then(res => {
+      if(res.length){
+        console.table(res)
+      }else{
+        this.localNotifications.schedule([
+          {
+            id: 1,
+            title: "1",
+            text: 'Hello friend!',
+            at: new Date(new Date().getTime() + 60*1000)
+          },
+          {
+            id: 2,
+            title: "2",
+            text: 'Hello friend!',
+            at: new Date(new Date().getTime() + 120*1000)
+          },
+          {
+            id: 3,
+            title: "3",
+            text: 'Hello friend!',
+            at: new Date(new Date().getTime() + 180*1000)
+          }
+        ]);
+        
+      }
+    })
+
     this.localNotifications.schedule({
       id: 1,
       title: "This is a godamn notification",
