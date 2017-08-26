@@ -92,7 +92,7 @@ export class SayingsPage {
               id: "ca-app-pub-1487801603037906/3070186327",
               isTesting: false,
               autoShow: true,
-              overlap: true
+              overlap: false
             };
             this.admobFree.banner.config(bannerConfig);
             this.admobFree.banner.prepare()
