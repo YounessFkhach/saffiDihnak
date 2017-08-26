@@ -1,3 +1,4 @@
+import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 import { OneSignal } from '@ionic-native/onesignal';
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
@@ -34,7 +35,8 @@ export class MyApp {
               private statusBar: StatusBar,
               private splashScreen: SplashScreen,
               private iab: InAppBrowser,
-              private oneSignal: OneSignal ){
+              private oneSignal: OneSignal,
+              private admobFree: AdMobFree){
 
 
     platform.ready().then(() => {
@@ -69,6 +71,21 @@ export class MyApp {
 
 
       this.platform.setDir('rtl', true);
+
+
+      //set the BannedAd
+      const bannerConfig: AdMobFreeBannerConfig = {
+              id: "ca-app-pub-1487801603037906/3070186327",
+              isTesting: false,
+              autoShow: true,
+              overlap: false
+            };
+            this.admobFree.banner.config(bannerConfig);
+            this.admobFree.banner.prepare()
+              .then(() => {
+                //console.log("banner is showing")
+              })
+              .catch(e => console.log(e));
       
     });
   }

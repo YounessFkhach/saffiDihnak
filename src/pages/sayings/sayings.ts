@@ -88,25 +88,25 @@ export class SayingsPage {
 
 
     // show the banner
-    const bannerConfig: AdMobFreeBannerConfig = {
-              id: "ca-app-pub-1487801603037906/3070186327",
-              isTesting: false,
-              autoShow: true,
-              overlap: false
-            };
-            this.admobFree.banner.config(bannerConfig);
-            this.admobFree.banner.prepare()
-              .then(() => {
-                //console.log("banner is showing")
-              })
-              .catch(e => {
-                console.log(e)
-              }); 
+    // const bannerConfig: AdMobFreeBannerConfig = {
+    //           id: "ca-app-pub-1487801603037906/3070186327",
+    //           isTesting: false,
+    //           autoShow: true,
+    //           overlap: false
+    //         };
+    //         this.admobFree.banner.config(bannerConfig);
+    //         this.admobFree.banner.prepare()
+    //           .then(() => {
+    //             //console.log("banner is showing")
+    //           })
+    //           .catch(e => {
+    //             console.log(e)
+    //           }); 
 
     // hide the banner whene the user exits the view  
-    this.navCtrl.viewWillLeave.asObservable().subscribe(() => {
-      this.admobFree.banner.hide()
-    })
+    // this.navCtrl.viewWillLeave.asObservable().subscribe(() => {
+    //   this.admobFree.banner.hide()
+    // })
 
     //Log the Sheduled notifications
     this.localNotifications.getAll().then(notifications => {
