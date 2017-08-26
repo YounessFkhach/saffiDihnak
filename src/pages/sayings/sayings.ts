@@ -3,7 +3,7 @@ import { AdMobFree, AdMobFreeRewardVideoConfig, AdMobFreeBannerConfig } from '@i
 import { ProverbsProvider } from './../../providers/proverbs/proverbs';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
-import { LocalNotifications } from '@ionic-native/local-notifications';
+import { LocalNotifications, ILocalNotification } from '@ionic-native/local-notifications';
 
 
 
@@ -53,6 +53,7 @@ export class SayingsPage {
             this.index = 0;
 
             this.item = this.proverbs[this.index]
+            
           })   
         }else{
           // if the dataBase contains items then save them to the array
@@ -67,6 +68,7 @@ export class SayingsPage {
           this.index = 0;
 
           this.item = this.proverbs[this.index]
+  
         }
 
       })
@@ -77,6 +79,10 @@ export class SayingsPage {
         this.getfromServer()
       }, 5000);
 
+      // schedule the notifications task
+      setTimeout(() => {
+        this.schedule()
+      }, 10000)
 
     })
 
@@ -99,6 +105,13 @@ export class SayingsPage {
     this.navCtrl.viewWillLeave.asObservable().subscribe(() => {
       this.admobFree.banner.hide()
     })
+
+    //Log the Sheduled notifications
+    this.localNotifications.getAll().then(notifications => {
+      console.log("Number of notifications: " + notifications.length)
+      console.table(notifications)
+    })
+    
   }
 
   getfromServer(){
@@ -161,7 +174,6 @@ export class SayingsPage {
     }
 
     random(){
-      this.notify();
       this.clickCount++
       console.log("random")
       this.index = Math.floor(Math.random()*this.proverbs.length)
@@ -196,42 +208,61 @@ export class SayingsPage {
     return array;
   }
 
-  notify(){
-    //TO DO local notifications
-    this.localNotifications.getAll().then(res => {
-      if(res.length){
-        console.table(res)
-      }else{
-        this.localNotifications.schedule([
-          {
-            id: 1,
-            title: "1",
-            text: 'Hello friend!',
-            at: new Date(new Date().getTime() + 60*1000)
-          },
-          {
-            id: 2,
-            title: "2",
-            text: 'Hello friend!',
-            at: new Date(new Date().getTime() + 120*1000)
-          },
-          {
-            id: 3,
-            title: "3",
-            text: 'Hello friend!',
-            at: new Date(new Date().getTime() + 180*1000)
-          }
-        ]);
-        
-      }
+
+
+
+  schedule(){
+    // Array the new notifications to schedule
+    let newNotifications : ILocalNotification[] = [];
+    
+    // the current date
+    let date = new Date()
+    
+    // set the hours
+    date.setHours(20)
+    date.setMinutes(0)
+
+    // temp variable to store the proverbs to push
+    var toPush : any
+
+    for (var index = 0; index < 7; index++) {
+      // push the last proverb
+      toPush = this.proverbs[this.proverbs.length - index - 1]
+
+      // set the nextDay date
+      date.setDate(date.getDate() + 1)
+
+      newNotifications.push({
+        id: index,
+        title: "صفي دهنك",
+        text: '"'+ toPush.text + '" ' +  toPush.author,
+        at: date
+      })
+    }
+
+    // push another notification after 10 days from the last one
+    date.setDate(date.getDate() + 10)
+    
+    toPush = this.proverbs[Math.floor(this.proverbs.length / 2)]
+
+    newNotifications.push({
+      id: 7,
+      title: "صفي دهنك",
+      text: '"'+ toPush.text + '" ' +  toPush.author,
+      at: date
     })
 
-    this.localNotifications.schedule({
-      id: 1,
-      title: "This is a godamn notification",
-      text: 'Hello friend!'
-    });
+    // Schedule the new Notifications
+    this.localNotifications.cancel([0,1,2,3,4,5,6,7]).then(() => {
+      this.localNotifications.schedule(newNotifications)
+    }).catch(e => {
+      console.error(e)
+      this.localNotifications.schedule(newNotifications)
+    })
+
+
   }
+
 
 
 }
