@@ -35,14 +35,14 @@ export class SayingsPage {
               private localNotifications: LocalNotifications) {
     this.provProvider.init().then(()=>{
       //try to load the sayings from the dataBase
-      console.log("database initialised")
+      //console.log("database initialised")
       this.provProvider.getAllSayings().then((res : any[])=> {
-        console.log("got the response from the table")
+        //console.log("got the response from the table")
         if(!res.length){
-          console.log("db response is null")
+          //console.log("db response is null")
           // if the dataBase is empty then load them from the local file
           this.provProvider.getLocalData("sayings").subscribe(res => {
-            console.log("got the data from local file")
+            //console.log("got the data from local file")
             this.proverbs = this.shuffleArray(res.json().items)
 
             this.proverbs = this.proverbs.map(item => {
@@ -57,7 +57,7 @@ export class SayingsPage {
           })   
         }else{
           // if the dataBase contains items then save them to the array
-          console.log("db response is not null")
+          //console.log("db response is not null")
           this.proverbs = this.shuffleArray(res);
 
           this.proverbs = this.proverbs.map(item => {
@@ -99,7 +99,9 @@ export class SayingsPage {
               .then(() => {
                 //console.log("banner is showing")
               })
-              .catch(e => console.log(e)); 
+              .catch(e => {
+                console.log(e)
+              }); 
 
     // hide the banner whene the user exits the view  
     this.navCtrl.viewWillLeave.asObservable().subscribe(() => {
@@ -108,14 +110,14 @@ export class SayingsPage {
 
     //Log the Sheduled notifications
     this.localNotifications.getAll().then(notifications => {
-      console.log("Number of notifications: " + notifications.length)
-      console.table(notifications)
+      //console.log("Number of notifications: " + notifications.length)
+      //console.table(notifications)
     })
     
   }
 
   getfromServer(){
-    console.log("getting items  from server")
+    //console.log("getting items  from server")
     this.provProvider.getServerData("sayings").subscribe(res => {
         // add the fetched data to the dataBase
         // then push them to the providers array
@@ -140,12 +142,12 @@ export class SayingsPage {
     };
     this.admobFree.rewardVideo.config(videoConfig);
     this.admobFree.rewardVideo.prepare().then(() => {
-      console.log("Ad is ready to be showed")
+      //console.log("Ad is ready to be showed")
     })
 
     this.navCtrl.viewWillLeave.asObservable().subscribe(() => {
       this.admobFree.rewardVideo.show().then(() => {
-        console.log("the viewWillLeave ad is showing")
+        //console.log("the viewWillLeave ad is showing")
       })
     })
 
@@ -189,10 +191,12 @@ export class SayingsPage {
       if(this.clickCount > 30){
         this.admobFree.rewardVideo.show()
           .then(() => {
-            console.log("ad is showing")
+            //console.log("ad is showing")
             this.clickCount = 0
           })
-          .catch((e) => console.log("ad not showing"))
+          .catch((e) => {
+            console.log("ad not showing")
+          })
       }else if(this.clickCount == 1){
         this.admobFree.rewardVideo.prepare()
       }

@@ -43,8 +43,8 @@
     </ion-fab>
   </ion-card>-->
 
-    <figure class="snip1574">
-			<img [src]="item.imageUrl" alt="" />
+    <figure class="snip1574" [style.backgroundImage]="'url(' + item.imageUrl + ')'">
+			<!--<img [src]="item.imageUrl" alt="" />-->
 			<figcaption>
 				<blockquote>
 					<p>{{item.text}}</p>
